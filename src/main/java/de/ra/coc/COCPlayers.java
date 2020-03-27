@@ -10,8 +10,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Iterator;
 
-public class COCPlayers
-{
+public class COCPlayers {
     private static String JWTOKEN;
     private static String PLAYER_TAG;
     private static JSONObject PLAYER_INFORMATION;
@@ -21,18 +20,15 @@ public class COCPlayers
 
     public static final String ARCHER = "archer";
 
-    public COCPlayers(String JWTOKEN)
-    {
+    public COCPlayers(String JWTOKEN) {
         COCPlayers.JWTOKEN = JWTOKEN;
     }
 
-    public void setPlayerTag(String PLAYER_TAG)
-    {
+    public void setPlayerTag(String PLAYER_TAG) {
         COCPlayers.PLAYER_TAG = PLAYER_TAG;
         JSONObject json = null;
 
-        try
-        {
+        try {
             HttpURLConnection connection = (HttpURLConnection) new URL(API_LINK + API_VERSION + "/players/" + PLAYER_TAG).openConnection();
             connection.setRequestProperty("Accept", "application/json");
             connection.setRequestProperty("authorization", "Bearer " + JWTOKEN);
@@ -40,17 +36,13 @@ public class COCPlayers
             InputStream input;
             int statusCode = connection.getResponseCode();
             System.out.println(statusCode);
-            if (statusCode >= 200 && statusCode < 400)
-            {
+            if (statusCode >= 200 && statusCode < 400) {
                 input = connection.getInputStream();
-            }
-            else
-            {
+            } else {
                 input = connection.getErrorStream();
             }
 
             PLAYER_INFORMATION = InputToJson.getJSONObject(input);
-
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -59,114 +51,174 @@ public class COCPlayers
         }
     }
 
-    public JSONObject getPlayerClanInformation()
-    {
+    public JSONObject getPlayerClanInformation() {
         JSONObject temp = null;
-        try
-        {
+        try {
             temp = PLAYER_INFORMATION.getJSONObject("clan");
-        }
-        catch (JSONException ex)
-        {
+        } catch (JSONException ex) {
             System.err.println(ex);
         }
 
         return temp;
     }
 
-    public String getPlayerClanName()
-    {
+    public String getPlayerClanName() {
         String temp = null;
-        try
-        {
+        try {
             temp = (String) PLAYER_INFORMATION.getJSONObject("clan")
                     .get("name");
-        }
-        catch (JSONException ex)
-        {
+        } catch (JSONException ex) {
             System.err.println(ex);
         }
 
         return temp;
     }
 
-    public String getPlayerClanSmallBadgeUrl()
-    {
+    public String getPlayerClanSmallBadgeUrl() {
         String temp = null;
-        try
-        {
+        try {
             temp = (String) PLAYER_INFORMATION.getJSONObject("clan")
                     .getJSONObject("badgeUrls")
                     .get("small");
-        }
-        catch (JSONException ex)
-        {
+        } catch (JSONException ex) {
             System.err.println(ex);
         }
 
         return temp;
     }
 
-    public String getPlayerClanMediumBadgeUrl()
-    {
+    public String getPlayerClanMediumBadgeUrl() {
         String temp = null;
-        try
-        {
+        try {
             temp = (String) PLAYER_INFORMATION.getJSONObject("clan")
                     .getJSONObject("badgeUrls")
                     .get("medium");
-        }
-        catch (JSONException ex)
-        {
+        } catch (JSONException ex) {
             System.err.println(ex);
         }
 
         return temp;
     }
 
-    public String getPlayerClanLargeBadgeUrl()
-    {
+    public String getPlayerClanLargeBadgeUrl() {
         String temp = null;
-        try
-        {
+        try {
             temp = (String) PLAYER_INFORMATION.getJSONObject("clan")
                     .getJSONObject("badgeUrls")
                     .get("large");
-        }
-        catch (JSONException ex)
-        {
+        } catch (JSONException ex) {
             System.err.println(ex);
         }
 
         return temp;
     }
 
-    public String getPlayerClanTag()
-    {
+    public String getPlayerClanTag() {
         String temp = null;
-        try
-        {
+        try {
             temp = (String) PLAYER_INFORMATION.getJSONObject("clan")
                     .get("tag");
-        }
-        catch (JSONException ex)
-        {
+        } catch (JSONException ex) {
             System.err.println(ex);
         }
 
         return temp;
     }
 
-    public Integer getPlayerClanLevel()
-    {
+    public Integer getPlayerClanLevel() {
         Integer temp = null;
-        try
-        {
+        try {
             temp = (Integer) PLAYER_INFORMATION.getJSONObject("clan")
                     .get("clanLevel");
+        } catch (JSONException ex) {
+            System.err.println(ex);
         }
-        catch (JSONException ex)
-        {
+
+        return temp;
+    }
+
+    public String getPlayerName() {
+        String temp = null;
+        try {
+            temp = (String) PLAYER_INFORMATION.get("name");
+        } catch (JSONException ex) {
+            System.err.println(ex);
+        }
+
+        return temp;
+    }
+
+    public Integer getPlayerExperienceLevel() {
+        Integer temp = null;
+        try {
+            temp = (Integer) PLAYER_INFORMATION.get("expLevel");
+        } catch (JSONException ex) {
+            System.err.println(ex);
+        }
+
+        return temp;
+    }
+
+    public Integer getPlayerBestTrophies() {
+        Integer temp = null;
+        try {
+            temp = (Integer) PLAYER_INFORMATION.get("bestTrophies");
+        } catch (JSONException ex) {
+            System.err.println(ex);
+        }
+
+        return temp;
+    }
+
+    public Integer getPlayerBestVersusTrophies() {
+        Integer temp = null;
+        try {
+            temp = (Integer) PLAYER_INFORMATION.get("bestVersusTrophies");
+        } catch (JSONException ex) {
+            System.err.println(ex);
+        }
+
+        return temp;
+    }
+
+    public Integer getPlayerDefenceWin() {
+        Integer temp = null;
+        try {
+            temp = (Integer) PLAYER_INFORMATION.get("defenseWins");
+        } catch (JSONException ex) {
+            System.err.println(ex);
+        }
+
+        return temp;
+    }
+
+    public String getPlayerTag() {
+        String temp = null;
+        try {
+            temp = (String) PLAYER_INFORMATION.get("tag");
+        } catch (JSONException ex) {
+            System.err.println(ex);
+        }
+
+        return temp;
+    }
+
+    public Integer getPlayerCurrentTrophies() {
+        Integer temp = null;
+        try {
+            temp = (Integer) PLAYER_INFORMATION.get("trophies");
+        } catch (JSONException ex) {
+            System.err.println(ex);
+        }
+
+        return temp;
+    }
+
+    public Integer getPlayerCurrentVersusTrophies() {
+        Integer temp = null;
+        try {
+            temp = (Integer) PLAYER_INFORMATION.get("versusTrophies");
+        } catch (JSONException ex) {
             System.err.println(ex);
         }
 
