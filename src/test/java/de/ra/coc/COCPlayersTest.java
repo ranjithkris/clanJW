@@ -1,6 +1,11 @@
+package de.ra.coc;
+
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.*;
+
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class COCPlayersTest
@@ -11,23 +16,54 @@ public class COCPlayersTest
     @Before
     public void setup()
     {
-        JWTOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImVhZDM2ZjFmLTZiNjMtNDI4My04Zjg0LTkzMGZjOGZiMzFiYiIsImlhdCI6MTU4NTIzMDM4MCwic3ViIjoiZGV2ZWxvcGVyLzc5Njc2MDRiLTJiNGEtNzE2Yy04Mzg5LTZkM2M3ZGU5MGQxZCIsInNjb3BlcyI6WyJjbGFzaCJdLCJsaW1pdHMiOlt7InRpZXIiOiJkZXZlbG9wZXIvc2lsdmVyIiwidHlwZSI6InRocm90dGxpbmcifSx7ImNpZHJzIjpbIjk0LjIyMi4yMDUuOTkiXSwidHlwZSI6ImNsaWVudCJ9XX0.DznRgnCbagZ-Oafn3KTUnrtHXNvEMhY3BcRfHYJZ_Ay1SSRLPcm3vHBaQLLpDAdZb6s4qbWhquXSvl9nmOwamw";
-        PLAYER_TAG = "%23Y989UU9Y";
+        File tokenFile = new File(getClass().
+                getClassLoader().
+                getResource("token.properties").getFile());
+
+        try {
+            FileReader tokenFileReader = new FileReader(tokenFile);
+            BufferedReader readbuffer = new BufferedReader(tokenFileReader);
+
+            JWTOKEN = readbuffer.readLine();
+            PLAYER_TAG = readbuffer.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     @Test
-    public void SimplePlayerTest()
+    public void PlayersClanInformation()
     {
-        COCPlayers ob = new COCPlayers(JWTOKEN);
+        COCPlayers player1 = new COCPlayers(JWTOKEN);
 
-        ob.setPlayerTag(PLAYER_TAG);
-        System.out.println(ob.getPlayerClanInformation());
-        System.out.println(ob.getPlayerClanName());
-        System.out.println(ob.getPlayerClanLevel());
-        System.out.println(ob.getPlayerClanSmallBadgeUrl());
-        System.out.println(ob.getPlayerClanMediumBadgeUrl());
-        System.out.println(ob.getPlayerClanLargeBadgeUrl());
-        System.out.println(ob.getPlayerClanTag());
+        player1.setPlayerTag(PLAYER_TAG);
 
-     //   assertTrue(ob.getPlayerClanInformation().equals());
+        //Check for getPlayerClanInformation() method.
+        assertEquals("{\"name\":\"Gods Angels\",\"clanLevel\":4,\"badgeUrls\":{\"small\":\"https://" +
+                "api-assets.clashofclans.com/badges/70/a5u2rx86Xo5Mcsapiq0o_NPv0leRzDVDeeyUbSfGjds.png\"," +
+                "\"large\":\"https://api-assets.clashofclans.com/badges/512/a5u2rx86Xo5Mcsapiq0o_NPv0leRzDVDe" +
+                "eyUbSfGjds.png\",\"medium\":\"https://api-assets.clashofclans.com/badges/200/a5u2rx86Xo5Mcsapi" +
+                "q0o_NPv0leRzDVDeeyUbSfGjds.png\"},\"tag\":\"#VQU8PYGY\"}",
+                player1.getPlayerClanInformation().toString());
+
+        //Check for getPlayerClanName() method;
+        assertEquals("Gods Angels", player1.getPlayerClanName());
+
+        //Check for getPlayerClanLevel() method.
+        assertEquals(4, (int) player1.getPlayerClanLevel());
+
+        //Check for getPlayerClanSmallBadgeUrl() method.
+        assertEquals("https://api-assets.clashofclans.com/badges/70/a5u2rx86Xo5Mcsapiq0o_" +
+                "NPv0leRzDVDeeyUbSfGjds.png", player1.getPlayerClanSmallBadgeUrl());
+
+        //Check for getPlayerClanMediumBadgeUrl() method.
+        assertEquals("https://api-assets.clashofclans.com/badges/200/a5u2rx86Xo5Mcsapiq0o_" +
+                "NPv0leRzDVDeeyUbSfGjds.png", player1.getPlayerClanMediumBadgeUrl());
+
+        //Check for getPlayerClanLargeBadgeUrl() method.
+        assertEquals("https://api-assets.clashofclans.com/badges/512/a5u2rx86Xo5Mcsapiq0o_" +
+                "NPv0leRzDVDeeyUbSfGjds.png", player1.getPlayerClanLargeBadgeUrl());
+
+        //Check for getPlayerClanTag() method.
+        assertEquals("#VQU8PYGY", player1.getPlayerClanTag());
     }
 }

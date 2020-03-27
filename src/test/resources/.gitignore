@@ -23,3 +23,5 @@ dependency-reduced-pom.xml
 # Subrepositories
 /faraday-cage/
 /deer-slipo-plugin/
+
+token.txt
