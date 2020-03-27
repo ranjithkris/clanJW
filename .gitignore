@@ -1,0 +1,25 @@
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+/.server-storage/
+/target/
+/deer-core/target/
+out/
+nbactions.xml
+
+# IntelliJ IDEA #
+*.iml
+.idea/
+.DS_STORE
+dependency-reduced-pom.xml
+# Markdown Editor Metadata #
+
+/manual/node_modules
+/manual/_book
+
+# Subrepositories
+/faraday-cage/
+/deer-slipo-plugin/
