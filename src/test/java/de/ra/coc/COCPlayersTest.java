@@ -79,5 +79,6 @@ public class COCPlayersTest {
         System.out.println(player1.getPlayerTag());
         System.out.println(player1.getPlayerCurrentTrophies());
         System.out.println(player1.getPlayerCurrentVersusTrophies());
+        System.out.println(player1.getPlayerRole());
     }
 }

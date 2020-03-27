@@ -35,7 +35,7 @@ public class COCPlayers {
 
             InputStream input;
             int statusCode = connection.getResponseCode();
-            System.out.println(statusCode);
+
             if (statusCode >= 200 && statusCode < 400) {
                 input = connection.getInputStream();
             } else {
@@ -218,6 +218,17 @@ public class COCPlayers {
         Integer temp = null;
         try {
             temp = (Integer) PLAYER_INFORMATION.get("versusTrophies");
+        } catch (JSONException ex) {
+            System.err.println(ex);
+        }
+
+        return temp;
+    }
+
+    public String getPlayerRole() {
+        String temp = null;
+        try {
+            temp = (String) PLAYER_INFORMATION.get("role");
         } catch (JSONException ex) {
             System.err.println(ex);
         }
