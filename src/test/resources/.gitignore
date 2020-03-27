@@ -24,4 +24,4 @@ dependency-reduced-pom.xml
 /faraday-cage/
 /deer-slipo-plugin/
 
-token.txt
+token.properties
