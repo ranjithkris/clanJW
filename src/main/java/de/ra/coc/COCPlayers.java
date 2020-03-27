@@ -1,3 +1,5 @@
+package de.ra.coc;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
