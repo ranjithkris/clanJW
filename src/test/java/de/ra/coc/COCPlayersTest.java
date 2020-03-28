@@ -1,5 +1,6 @@
 package de.ra.coc;
 
+import org.json.JSONException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -30,10 +31,8 @@ public class COCPlayersTest {
     }
 
     @Test
-    public void PlayersClanInformation() {
-        COCPlayers player1 = new COCPlayers(JWTOKEN);
-
-        player1.setPlayerTag(PLAYER_TAG);
+    public void PlayersClanInformation() throws JSONException {
+        COCPlayers player1 = new COCPlayers(JWTOKEN, PLAYER_TAG);
 
         //Check for getPlayerClanInformation() method.
         assertEquals("{\"name\":\"Gods Angels\",\"clanLevel\":4,\"badgeUrls\":{\"small\":\"https://" +
@@ -66,10 +65,8 @@ public class COCPlayersTest {
     }
 
     @Test
-    public void PlayersProfile() {
-        COCPlayers player1 = new COCPlayers(JWTOKEN);
-
-        player1.setPlayerTag(PLAYER_TAG);
+    public void PlayersProfile() throws JSONException {
+        COCPlayers player1 = new COCPlayers(JWTOKEN, PLAYER_TAG);
 
         System.out.println(player1.getPlayerName());
         System.out.println(player1.getPlayerExperienceLevel());
@@ -80,5 +77,10 @@ public class COCPlayersTest {
         System.out.println(player1.getPlayerCurrentTrophies());
         System.out.println(player1.getPlayerCurrentVersusTrophies());
         System.out.println(player1.getPlayerRole());
+        System.out.println(player1.getPlayerTownHallLevel());
+        System.out.println(player1.getPlayerBuilderHallLevel());
+        System.out.println(player1.getPlayerVersusBattleWin());
+        System.out.println(player1.getPlayerAttackWin());
+        System.out.println(player1.getPlayerTroopsDonationCount());
     }
 }
