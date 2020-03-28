@@ -25,7 +25,75 @@ public class COCPlayers {
     private static final String API_LINK = "https://api.clashofclans.com/";
     private static final String API_VERSION = "v1";
 
-    public static final String ARCHER = "archer";
+    /**
+     * Constant used to refer the troop Barbarian in home village.
+     */
+    public static final Integer BARBARIAN = 1;
+
+    /**
+     * Constant used to refer the troop Archer in home village.
+     */
+    public static final Integer ARCHER = 2;
+
+    /**
+     * Constant used to refer the troop Giant in home village.
+     */
+    public static final Integer GIANT = 3;
+
+    /**
+     * Constant used to refer the troop Goblin in home village.
+     */
+    public static final Integer GOBLIN = 4;
+
+    /**
+     * Constant used to refer the troop Wall Breaker in home village.
+     */
+    public static final Integer WALL_BREAKER = 5;
+
+    /**
+     * Constant used to refer the troop Balloon in home village.
+     */
+    public static final Integer BALLOON = 6;
+
+    /**
+     * Constant used to refer the troop Wizard in home village.
+     */
+    public static final Integer WIZARD = 7;
+
+    /**
+     * Constant used to refer the troop Healer in home village.
+     */
+    public static final Integer HEALER = 8;
+
+    /**
+     * Constant used to refer the troop Dragon in home village.
+     */
+    public static final Integer DRAGON = 9;
+
+    /**
+     * Constant used to refer the troop P.E.K.K.A in home village.
+     */
+    public static final Integer PEKKA = 10;
+
+    /**
+     * Constant used to refer the troop Baby Dragon in home village.
+     */
+    public static final Integer BABY_DRAGON = 11;
+
+    /**
+     * Constant used to refer the troop Miner in home village.
+     */
+    public static final Integer MINER = 12;
+
+    /**
+     * Constant used to refer the troop Electro Dragon in home village.
+     */
+    public static final Integer ELECTRO_DRAGON = 13;
+
+    /**
+     * Constant used to refer the troop Yeti in home village.
+     */
+    public static final Integer YETI = 14;
 
     /**
      *This constructor will set the JSON Web Token and player's tag and retrives the players information
@@ -268,5 +336,14 @@ public class COCPlayers {
      */
     public Integer getPlayerTroopsDonationCount() throws JSONException {
         return (Integer) PLAYER_INFORMATION.get("donations");
+    }
+
+    /**
+     * This method returns the number of troops received by the other clan member.
+     * @return Number of troops received by the other clan member.
+     * @throws org.json.JSONException If the processing of JSONObject is failed.
+     */
+    public Integer getPlayerTroopsReceivedCount() throws JSONException {
+        return (Integer) PLAYER_INFORMATION.get("donationsReceived");
     }
 }

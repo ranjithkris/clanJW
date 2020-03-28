@@ -7,7 +7,6 @@ import org.junit.Test;
 import java.io.*;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class COCPlayersTest {
     private String JWTOKEN;
@@ -82,5 +81,6 @@ public class COCPlayersTest {
         System.out.println(player1.getPlayerVersusBattleWin());
         System.out.println(player1.getPlayerAttackWin());
         System.out.println(player1.getPlayerTroopsDonationCount());
+        System.out.println(player1.getPlayerTroopsReceivedCount());
     }
 }
