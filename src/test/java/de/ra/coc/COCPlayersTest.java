@@ -1,5 +1,7 @@
 package de.ra.coc;
 
+import de.ra.exception.IllegalTroopNameException;
+import de.ra.exception.TroopNotUnlockedException;
 import org.json.JSONException;
 import org.junit.Before;
 import org.junit.Test;
@@ -64,7 +66,7 @@ public class COCPlayersTest {
     }
 
     @Test
-    public void PlayersProfile() throws JSONException {
+    public void PlayersProfile() throws JSONException, TroopNotUnlockedException, IllegalTroopNameException {
         COCPlayers player1 = new COCPlayers(JWTOKEN, PLAYER_TAG);
 
         System.out.println(player1.getPlayerName());
@@ -82,5 +84,8 @@ public class COCPlayersTest {
         System.out.println(player1.getPlayerAttackWin());
         System.out.println(player1.getPlayerTroopsDonationCount());
         System.out.println(player1.getPlayerTroopsReceivedCount());
+        System.out.println(player1.getPlayerTroopLevel(COCPlayers.ARCHER));
+        System.out.println(player1.getPlayerTroopMaxLevel(COCPlayers.ARCHER));
+        System.out.println(player1.getPlayerTroopInformation());
     }
 }
