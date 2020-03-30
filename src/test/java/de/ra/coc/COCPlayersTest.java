@@ -1,5 +1,7 @@
 package de.ra.coc;
 
+import de.ra.coc.COCData.HomeVillage.ElixirTroop;
+import de.ra.exception.COCServerConnectionException;
 import de.ra.exception.IllegalTroopNameException;
 import de.ra.exception.TroopNotUnlockedException;
 import org.json.JSONException;
@@ -32,7 +34,7 @@ public class COCPlayersTest {
     }
 
     @Test
-    public void PlayersClanInformation() throws JSONException {
+    public void PlayersClanInformation() throws JSONException, COCServerConnectionException {
         COCPlayers player1 = new COCPlayers(JWTOKEN, PLAYER_TAG);
 
         //Check for getPlayerClanInformation() method.
@@ -66,26 +68,29 @@ public class COCPlayersTest {
     }
 
     @Test
-    public void PlayersProfile() throws JSONException, TroopNotUnlockedException, IllegalTroopNameException {
+    public void PlayersProfile() throws JSONException, TroopNotUnlockedException, IllegalTroopNameException, COCServerConnectionException {
         COCPlayers player1 = new COCPlayers(JWTOKEN, PLAYER_TAG);
 
-        System.out.println(player1.getPlayerName());
-        System.out.println(player1.getPlayerExperienceLevel());
-        System.out.println(player1.getPlayerBestTrophies());
-        System.out.println(player1.getPlayerBestVersusTrophies());
-        System.out.println(player1.getPlayerDefenceWin());
-        System.out.println(player1.getPlayerTag());
-        System.out.println(player1.getPlayerCurrentTrophies());
-        System.out.println(player1.getPlayerCurrentVersusTrophies());
-        System.out.println(player1.getPlayerRole());
-        System.out.println(player1.getPlayerTownHallLevel());
-        System.out.println(player1.getPlayerBuilderHallLevel());
-        System.out.println(player1.getPlayerVersusBattleWin());
-        System.out.println(player1.getPlayerAttackWin());
-        System.out.println(player1.getPlayerTroopsDonationCount());
-        System.out.println(player1.getPlayerTroopsReceivedCount());
-        System.out.println(player1.getPlayerTroopLevel(COCPlayers.ARCHER));
-        System.out.println(player1.getPlayerTroopMaxLevel(COCPlayers.ARCHER));
-        System.out.println(player1.getPlayerTroopInformation());
+        System.out.println("Player Name = " + player1.getPlayerName());
+        System.out.println("Experience Level = " + player1.getPlayerExperienceLevel());
+        System.out.println("Best Trophies" + player1.getPlayerBestTrophies());
+        System.out.println("Best Versus Trophies = " + player1.getPlayerBestVersusTrophies());
+        System.out.println("Defence Won = " + player1.getPlayerDefenceWin());
+        System.out.println("Player Tag = " + player1.getPlayerTag());
+        System.out.println("Current Trophies = " + player1.getPlayerCurrentTrophies());
+        System.out.println("Current Versus trophies = " + player1.getPlayerCurrentVersusTrophies());
+        System.out.println("Player Role = " + player1.getPlayerRole());
+        System.out.println("TownHall level = " + player1.getPlayerTownHallLevel());
+        System.out.println("Builder Hall level = " + player1.getPlayerBuilderHallLevel());
+        System.out.println("Versus Battle Won = " + player1.getPlayerVersusBattleWin());
+        System.out.println("Attack Won = " + player1.getPlayerAttackWin());
+        System.out.println("Troop donation count = " + player1.getPlayerTroopsDonationCount());
+        System.out.println("Troop received count = " + player1.getPlayerTroopsReceivedCount());
+        System.out.println("Archer Level = " + player1.getPlayerTroopLevel(ElixirTroop.ARCHER));
+        System.out.println("Archer Max level = " + player1.getPlayerTroopMaxLevel(ElixirTroop.ARCHER));
+        System.out.println("Archer village name = " + player1.getPlayerTroopVillage(ElixirTroop.ARCHER));
+        System.out.println("Archer troop name = " + player1.getPlayerTroopName(ElixirTroop.ARCHER));
+        System.out.println("Baby Dragon Information = " + player1.getPlayerSingleTroopInfo(ElixirTroop.BABY_DRAGON));
+        System.out.println("Complete troops information = " + player1.getPlayerTroopsInformation());
     }
 }

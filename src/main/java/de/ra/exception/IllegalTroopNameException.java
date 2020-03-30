@@ -1,7 +1,15 @@
 package de.ra.exception;
 
+/**
+ * This class is a throwable exception to indicated that the given troop name is
+ * not valid
+ */
 public class IllegalTroopNameException extends Exception{
-    public IllegalTroopNameException(String exception) {
-        super(exception);
+    /**
+     * Constructs a new IllegalTroopNameException with the detailed message.
+     * @param troopName Troop name.
+     */
+    public IllegalTroopNameException(String troopName) {
+        super(troopName + " is a illegal troop name");
     }
 }
