@@ -1,5 +1,10 @@
 package de.ra.coc;
 
+import de.ra.coc.COCData.BuilderBase.Troops;
+import de.ra.coc.COCData.HomeVillage.DarkElixirSpell;
+import de.ra.coc.COCData.HomeVillage.DarkElixirTroop;
+import de.ra.coc.COCData.HomeVillage.ElixirSpell;
+import de.ra.coc.COCData.HomeVillage.ElixirTroop;
 import de.ra.exception.*;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -10,7 +15,6 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Arrays;
 
 /**
  *
@@ -290,14 +294,27 @@ public class COCPlayers {
 
     private Integer getIndex(String category, String key) throws JSONException {
         JSONArray troops = PLAYER_INFORMATION.getJSONArray(category);
-        for(int index = 0; index < PLAYER_INFORMATION.length(); index++) {
+        for(int index = 0; index < troops.length(); index++) {
             JSONObject troop = (JSONObject) troops.get(index);
             if( troop.get("name").equals(key))
                 return index;
         }
 
-        if(Arrays.asList(Troop.troops).contains(key))
+        if("troops".equals(category) && ElixirTroop.getElixirTroopsList().contains(key))
             return 100;
+
+        if("spells".equals(category) && ElixirSpell.getElixirSpellsList().contains(key))
+            return  100;
+
+        if("spells".equals(category) && DarkElixirSpell.getDarkElixirSpellsList().contains(key))
+            return 100;
+
+        if("troops".equals(category) && DarkElixirTroop.getDarkElixirTroopsList().contains(key))
+            return 100;
+
+        if("troops".equals(category) && Troops.getBuilderBaseTroopsList().contains(key))
+            return 100;
+
         return 500;
     }
 
@@ -307,10 +324,10 @@ public class COCPlayers {
      * @return Current level of the troop.
      * @throws JSONException If the processing of JSONObject is failed.
      * @throws JSONException If the processing of JSONObject is failed.
-     * @throws TroopNotUnlockedException If the provided troop name is not unlocked by the player.
-     * @throws IllegalTroopNameException If the provided the troop name is not valid.
+     * @throws ArmyNotUnlockedException If the provided troop name is not unlocked by the player.
+     * @throws IllegalArmyNameException If the provided the troop name is not valid.
      */
-    public Integer getPlayerTroopLevel(String troopName) throws JSONException, TroopNotUnlockedException, IllegalTroopNameException {
+    public Integer getPlayerTroopLevel(String troopName) throws JSONException, ArmyNotUnlockedException, IllegalArmyNameException {
         return (Integer) getPlayerSingleTroopInfo(troopName).get("level");
     }
 
@@ -328,10 +345,10 @@ public class COCPlayers {
      * @param troopName Troop name.
      * @return Maximum level of a troop unlocked by the player.
      * @throws JSONException If the processing of JSONObject is failed.
-     * @throws TroopNotUnlockedException If the provided troop name is not unlocked by the player.
-     * @throws IllegalTroopNameException If the provided the troop name is not valid.
+     * @throws ArmyNotUnlockedException If the provided troop name is not unlocked by the player.
+     * @throws IllegalArmyNameException If the provided the troop name is not valid.
      */
-    public Integer getPlayerTroopMaxLevel(String troopName) throws JSONException, TroopNotUnlockedException, IllegalTroopNameException {
+    public Integer getPlayerTroopMaxLevel(String troopName) throws JSONException, ArmyNotUnlockedException, IllegalArmyNameException {
         return (Integer) getPlayerSingleTroopInfo(troopName).get("maxLevel");
     }
 
@@ -340,10 +357,10 @@ public class COCPlayers {
      * @param troopName Troop name.
      * @return Village name of the given troop.
      * @throws JSONException If the processing of JSONObject is failed.
-     * @throws TroopNotUnlockedException If the provided troop name is not unlocked by the player.
-     * @throws IllegalTroopNameException If the provided the troop name is not valid.
+     * @throws ArmyNotUnlockedException If the provided troop name is not unlocked by the player.
+     * @throws IllegalArmyNameException If the provided the troop name is not valid.
      */
-    public String getPlayerTroopVillage(String troopName) throws JSONException, TroopNotUnlockedException, IllegalTroopNameException {
+    public String getPlayerTroopVillage(String troopName) throws JSONException, ArmyNotUnlockedException, IllegalArmyNameException {
         return (String) getPlayerSingleTroopInfo(troopName).get("village");
     }
 
@@ -352,10 +369,10 @@ public class COCPlayers {
      * @param troopName Troop name.
      * @return Village name of the given troop.
      * @throws JSONException If the processing of JSONObject is failed.
-     * @throws TroopNotUnlockedException If the provided troop name is not unlocked by the player.
-     * @throws IllegalTroopNameException If the provided the troop name is not valid.
+     * @throws ArmyNotUnlockedException If the provided troop name is not unlocked by the player.
+     * @throws IllegalArmyNameException If the provided the troop name is not valid.
      */
-    public String getPlayerTroopName(String troopName) throws JSONException, TroopNotUnlockedException, IllegalTroopNameException {
+    public String getPlayerTroopName(String troopName) throws JSONException, ArmyNotUnlockedException, IllegalArmyNameException {
         return (String) getPlayerSingleTroopInfo(troopName).get("name");
     }
 
@@ -364,18 +381,18 @@ public class COCPlayers {
      * @param troopName Troop name.
      * @return Complete information of a single troop.
      * @throws JSONException If the processing of JSONObject is failed.
-     * @throws TroopNotUnlockedException If the provided troop name is not unlocked by the player.
-     * @throws IllegalTroopNameException If the provided the troop name is not valid.
+     * @throws ArmyNotUnlockedException If the provided troop name is not unlocked by the player.
+     * @throws IllegalArmyNameException If the provided the troop name is not valid.
      */
-    public JSONObject getPlayerSingleTroopInfo(String troopName) throws JSONException, IllegalTroopNameException, TroopNotUnlockedException {
+    public JSONObject getPlayerSingleTroopInfo(String troopName) throws JSONException, IllegalArmyNameException, ArmyNotUnlockedException {
         Integer index = getIndex("troops", troopName);
 
         if(index == 100)
-            throw new TroopNotUnlockedException(troopName,
+            throw new ArmyNotUnlockedException(troopName, "Troop",
                     (String) PLAYER_INFORMATION.get("name"));
 
         if(index == 500)
-            throw new IllegalTroopNameException(troopName);
+            throw new IllegalArmyNameException(troopName, "Troop");
 
         return (JSONObject) PLAYER_INFORMATION
                 .getJSONArray("troops")
@@ -387,21 +404,79 @@ public class COCPlayers {
      * @param spellName Spell name.
      * @return Complete information of a single spell.
      * @throws JSONException If the processing of JSONObject is failed.
-     * @throws SpellNotUnlockedException If the provided troop name is not unlocked by the player.
-     * @throws IllegalSpellNameException If the provided the troop name is not valid.
+     * @throws ArmyNotUnlockedException If the provided troop name is not unlocked by the player.
+     * @throws IllegalArmyNameException If the provided the troop name is not valid.
      */
-    public JSONObject getPlayerSingleSpellInfo(String spellName) throws JSONException, SpellNotUnlockedException, IllegalSpellNameException {
+    public JSONObject getPlayerSingleSpellInfo(String spellName) throws JSONException, ArmyNotUnlockedException, IllegalArmyNameException {
         Integer index = getIndex("spells", spellName);
 
         if(index == 100)
-            throw new SpellNotUnlockedException(spellName,
+            throw new ArmyNotUnlockedException(spellName, "Spell",
                     (String) PLAYER_INFORMATION.get("name"));
 
         if(index == 500)
-            throw new IllegalSpellNameException(spellName);
+            throw new IllegalArmyNameException(spellName, "Spell");
 
         return (JSONObject) PLAYER_INFORMATION
-                .getJSONArray("troops")
+                .getJSONArray("spells")
                 .get(index);
+    }
+
+    /**
+     * This method return the player's current level of the given spell name.
+     * @param spellName Spell name.
+     * @return Current level of the spell.
+     * @throws JSONException If the processing of JSONObject is failed.
+     * @throws JSONException If the processing of JSONObject is failed.
+     * @throws ArmyNotUnlockedException If the provided spell name is not unlocked by the player.
+     * @throws IllegalArmyNameException If the provided the spell name is not valid.
+     */
+    public Integer getPlayerSpellLevel(String spellName) throws JSONException, ArmyNotUnlockedException, IllegalArmyNameException {
+        return (Integer) getPlayerSingleSpellInfo(spellName).get("level");
+    }
+
+    /**
+     * This method returns the Player's current spells information in JSONArray format.
+     * @return Player's current spells information in JSONArray format.
+     * @throws JSONException If the processing of JSONObject is failed.
+     */
+    public JSONArray getPlayerSpellsInformation() throws JSONException {
+        return PLAYER_INFORMATION.getJSONArray("spells");
+    }
+
+    /**
+     * This method return the maximum level of a spell unlocked by the player.
+     * @param spellName Spell name.
+     * @return Maximum level of a spell unlocked by the player.
+     * @throws JSONException If the processing of JSONObject is failed.
+     * @throws ArmyNotUnlockedException If the provided spell name is not unlocked by the player.
+     * @throws IllegalArmyNameException If the provided the spell name is not valid.
+     */
+    public Integer getPlayerSpellMaxLevel(String spellName) throws JSONException, ArmyNotUnlockedException, IllegalArmyNameException {
+        return (Integer) getPlayerSingleSpellInfo(spellName).get("maxLevel");
+    }
+
+    /**
+     * This method returns the village name of the given spell.
+     * @param spellName Spell name.
+     * @return Village name of the given spell.
+     * @throws JSONException If the processing of JSONObject is failed.
+     * @throws ArmyNotUnlockedException If the provided spell name is not unlocked by the player.
+     * @throws IllegalArmyNameException If the provided the spell name is not valid.
+     */
+    public String getPlayerSpellVillage(String spellName) throws JSONException, ArmyNotUnlockedException, IllegalArmyNameException {
+        return (String) getPlayerSingleSpellInfo(spellName).get("village");
+    }
+
+    /**
+     * This method returns the village name of the given spell.
+     * @param spellName Spell name.
+     * @return Village name of the given spell.
+     * @throws JSONException If the processing of JSONObject is failed.
+     * @throws ArmyNotUnlockedException If the provided spell name is not unlocked by the player.
+     * @throws IllegalArmyNameException If the provided the spell name is not valid.
+     */
+    public String getPlayerSpellName(String spellName) throws JSONException, ArmyNotUnlockedException, IllegalArmyNameException {
+        return (String) getPlayerSingleSpellInfo(spellName).get("name");
     }
 }

@@ -1,5 +1,8 @@
 package de.ra.coc.COCData.BuilderBase;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * This class represents the troops in builder base.
  */
@@ -58,4 +61,24 @@ public class Troops {
      * Constant used to refer the troop Hog Glider in builder base.
      */
     public static final String HOG_GLIDER = "Hog Glider";
+
+    /**
+     * This method returns the list of all troops in builder base.
+     * @return Complete list of troops in builder base.
+     */
+    public static List<String> getBuilderBaseTroopsList() {
+        return new ArrayList<String>() {{
+            add(RAGED_BARBARIAN);
+            add(SNEAKY_ARCHER);
+            add(BOXER_GIANT);
+            add(BETA_MINION);
+            add(BOMBER);
+            add(BABY_DRAGON);
+            add(CANNON_CART);
+            add(NIGHT_WITCH);
+            add(DROP_SHIP);
+            add(SUPER_PEKKA);
+            add(HOG_GLIDER);
+        }};
+    }
 }

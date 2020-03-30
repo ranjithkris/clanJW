@@ -1,5 +1,8 @@
 package de.ra.coc.COCData.HomeVillage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * This class represents the Elixir troops in home village.
  */
@@ -73,4 +76,27 @@ public class ElixirTroop {
      * Constant used to refer the troop Yeti in home village.
      */
     public static final String YETI = "Yeti";
+
+    /**
+     * This method returns the list of all elixir troops in home village.
+     * @return Complete list of elixir troops in home village.
+     */
+    public static List<String> getElixirTroopsList() {
+        return new ArrayList<String>() {{
+            add(BARBARIAN);
+            add(ARCHER);
+            add(GIANT);
+            add(GOBLIN);
+            add(WALL_BREAKER);
+            add(BALLOON);
+            add(WIZARD);
+            add(HEALER);
+            add(DRAGON);
+            add(PEKKA);
+            add(BABY_DRAGON);
+            add(MINER);
+            add(ELECTRO_DRAGON);
+            add(YETI);
+        }};
+    }
 }

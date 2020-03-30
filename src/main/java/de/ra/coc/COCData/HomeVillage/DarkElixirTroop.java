@@ -1,5 +1,10 @@
 package de.ra.coc.COCData.HomeVillage;
 
+import com.sun.xml.internal.fastinfoset.algorithm.IEEE754FloatingPointEncodingAlgorithm;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * This class represents the Dark Elixir troops in home village.
  */
@@ -43,4 +48,21 @@ public class DarkElixirTroop {
      * Constant used to refer the troop Ice Golem in home village.
      */
     public static final String ICE_GOLEM = "Ice Golem";
+
+    /**
+     * This method returns the list of all dark elixir troops in home village.
+     * @return Complete list of dark elixir troops in home village.
+     */
+    public static List<String> getDarkElixirTroopsList() {
+        return new ArrayList<String>(){{
+            add(MINION);
+            add(HOG_RIDER);
+            add(VALKYRIE);
+            add(GOLEM);
+            add(WITCH);
+            add(LAVA_HOUND);
+            add(BOWLER);
+            add(ICE_GOLEM);
+        }};
+    }
 }

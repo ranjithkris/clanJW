@@ -1,5 +1,8 @@
 package de.ra.coc.COCData.HomeVillage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * This class represents the Elixir spells in home village.
  */
@@ -33,4 +36,19 @@ public class ElixirSpell {
      * Constant used to refer the Clone Spell in home village.
      */
     public static final String CLONE_SPELL = "Clone Spell";
+
+    /**
+     * This method returns the list of all elixir spells in home village.
+     * @return Complete list of elixir spells in home village.
+     */
+    public static List<String> getElixirSpellsList() {
+        return new ArrayList<String>() {{
+            add(LIGHTNING_SPELL);
+            add(HEALING_SPELL);
+            add(RAGE_SPELL);
+            add(JUMP_SPELL);
+            add(FREEZE_SPELL);
+            add(CLONE_SPELL);
+        }};
+    }
 }
