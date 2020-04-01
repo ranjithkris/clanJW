@@ -1,6 +1,7 @@
 package de.ra.coc;
 
 import de.ra.coc.COCData.BuilderBase.Troops;
+import de.ra.coc.COCData.Heroes;
 import de.ra.coc.COCData.HomeVillage.DarkElixirSpell;
 import de.ra.coc.COCData.HomeVillage.DarkElixirTroop;
 import de.ra.coc.COCData.HomeVillage.ElixirSpell;
@@ -315,12 +316,19 @@ public class COCPlayers {
         if("troops".equals(category) && Troops.getBuilderBaseTroopsList().contains(key))
             return 100;
 
+        if("heroes".equals(category) && Heroes.getHeroesList().contains(key))
+            return 100;
+
         return 500;
     }
 
     /**
      * This method return the player's current level of the given troop name.
-     * @param troopName Troop name.
+     * @param troopName Troop name. Example: ARCHER, Wizard etc.
+     *                  See the list of all troops
+     *                  {@link de.ra.coc.COCData.HomeVillage.ElixirTroop}
+     *                  {@link de.ra.coc.COCData.HomeVillage.DarkElixirTroop}
+     *                  {@link de.ra.coc.COCData.BuilderBase.Troops}
      * @return Current level of the troop.
      * @throws JSONException If the processing of JSONObject is failed.
      * @throws JSONException If the processing of JSONObject is failed.
@@ -342,7 +350,11 @@ public class COCPlayers {
 
     /**
      * This method return the maximum level of a troop unlocked by the player.
-     * @param troopName Troop name.
+     * @param troopName Troop name. Example: ARCHER, Wizard etc.
+     *                  See the list of all troops
+     *                  {@link de.ra.coc.COCData.HomeVillage.ElixirTroop}
+     *                  {@link de.ra.coc.COCData.HomeVillage.DarkElixirTroop}
+     *                  {@link de.ra.coc.COCData.BuilderBase.Troops}
      * @return Maximum level of a troop unlocked by the player.
      * @throws JSONException If the processing of JSONObject is failed.
      * @throws TroopNotUnlockedException If the provided troop name is not unlocked by the player.
@@ -354,7 +366,11 @@ public class COCPlayers {
 
     /**
      * This method returns the village name of the given troop.
-     * @param troopName Troop name.
+     * @param troopName Troop name. Example: ARCHER, Wizard etc.
+     *                  See the list of all troops
+     *                  {@link de.ra.coc.COCData.HomeVillage.ElixirTroop}
+     *                  {@link de.ra.coc.COCData.HomeVillage.DarkElixirTroop}
+     *                  {@link de.ra.coc.COCData.BuilderBase.Troops}
      * @return Village name of the given troop.
      * @throws JSONException If the processing of JSONObject is failed.
      * @throws TroopNotUnlockedException If the provided troop name is not unlocked by the player.
@@ -366,7 +382,11 @@ public class COCPlayers {
 
     /**
      * This method returns the village name of the given troop.
-     * @param troopName Troop name.
+     * @param troopName Troop name. Example: ARCHER, Wizard etc.
+     *                  See the list of all troops
+     *                  {@link de.ra.coc.COCData.HomeVillage.ElixirTroop}
+     *                  {@link de.ra.coc.COCData.HomeVillage.DarkElixirTroop}
+     *                  {@link de.ra.coc.COCData.BuilderBase.Troops}
      * @return Village name of the given troop.
      * @throws JSONException If the processing of JSONObject is failed.
      * @throws TroopNotUnlockedException If the provided troop name is not unlocked by the player.
@@ -378,7 +398,11 @@ public class COCPlayers {
 
     /**
      * This method returns the complete information of a single troop in JSONObject format.
-     * @param troopName Troop name.
+     * @param troopName Troop name. Example: ARCHER, Wizard etc.
+     *                  See the list of all troops
+     *                  {@link de.ra.coc.COCData.HomeVillage.ElixirTroop}
+     *                  {@link de.ra.coc.COCData.HomeVillage.DarkElixirTroop}
+     *                  {@link de.ra.coc.COCData.BuilderBase.Troops}
      * @return Complete information of a single troop.
      * @throws JSONException If the processing of JSONObject is failed.
      * @throws TroopNotUnlockedException If the provided troop name is not unlocked by the player.
@@ -401,7 +425,10 @@ public class COCPlayers {
 
     /**
      * This method returns the complete information of a single spell in JSONObject format.
-     * @param spellName Spell name.
+     * @param spellName Spell name. Example: Lightning spell, Haste spell etc.
+     *                  See the list of all spells
+     *                  {@link de.ra.coc.COCData.HomeVillage.ElixirSpell}
+     *                  {@link de.ra.coc.COCData.HomeVillage.DarkElixirSpell}
      * @return Complete information of a single spell.
      * @throws JSONException If the processing of JSONObject is failed.
      * @throws SpellNotUnlockedException If the provided troop name is not unlocked by the player.
@@ -424,7 +451,10 @@ public class COCPlayers {
 
     /**
      * This method return the player's current level of the given spell name.
-     * @param spellName Spell name.
+     * @param spellName Spell name. Example: Lightning spell, Haste spell etc.
+     *                  See the list of all spells
+     *                  {@link de.ra.coc.COCData.HomeVillage.ElixirSpell}
+     *                  {@link de.ra.coc.COCData.HomeVillage.DarkElixirSpell}
      * @return Current level of the spell.
      * @throws JSONException If the processing of JSONObject is failed.
      * @throws JSONException If the processing of JSONObject is failed.
@@ -446,7 +476,10 @@ public class COCPlayers {
 
     /**
      * This method return the maximum level of a spell unlocked by the player.
-     * @param spellName Spell name.
+     * @param spellName Spell name. Example: Lightning spell, Haste spell etc.
+     *                  See the list of all spells
+     *                  {@link de.ra.coc.COCData.HomeVillage.ElixirSpell}
+     *                  {@link de.ra.coc.COCData.HomeVillage.DarkElixirSpell}
      * @return Maximum level of a spell unlocked by the player.
      * @throws JSONException If the processing of JSONObject is failed.
      * @throws SpellNotUnlockedException If the provided spell name is not unlocked by the player.
@@ -458,7 +491,10 @@ public class COCPlayers {
 
     /**
      * This method returns the village name of the given spell.
-     * @param spellName Spell name.
+     * @param spellName Spell name. Example: Lightning spell, Haste spell etc.
+     *                  See the list of all spells
+     *                  {@link de.ra.coc.COCData.HomeVillage.ElixirSpell}
+     *                  {@link de.ra.coc.COCData.HomeVillage.DarkElixirSpell}
      * @return Village name of the given spell.
      * @throws JSONException If the processing of JSONObject is failed.
      * @throws SpellNotUnlockedException If the provided spell name is not unlocked by the player.
@@ -470,7 +506,10 @@ public class COCPlayers {
 
     /**
      * This method returns the village name of the given spell.
-     * @param spellName Spell name.
+     * @param spellName Spell name. Example: Lightning spell, Haste spell etc.
+     *                  See the list of all spells
+     *                  {@link de.ra.coc.COCData.HomeVillage.ElixirSpell}
+     *                  {@link de.ra.coc.COCData.HomeVillage.DarkElixirSpell}
      * @return Village name of the given spell.
      * @throws JSONException If the processing of JSONObject is failed.
      * @throws SpellNotUnlockedException If the provided spell name is not unlocked by the player.
@@ -478,5 +517,91 @@ public class COCPlayers {
      */
     public String getPlayerSpellName(String spellName) throws JSONException, SpellNotUnlockedException, IllegalSpellNameException {
         return (String) getPlayerSingleSpellInfo(spellName).get("name");
+    }
+
+    /**
+     * This method returns the complete information of a single hero in JSONObject format.
+     * @param heroName Hero name. Example: Barbarian King, Archer Queen etc.
+     *                 See the list of all heroes {@link de.ra.coc.COCData.Heroes}
+     * @return Complete information of a single hero.
+     * @throws JSONException If the processing of JSONObject is failed.
+     * @throws HeroNotUnlockedException If the provided hero name is not unlocked by the player.
+     * @throws IllegalHeroNameException If the provided the hero name is not valid.
+     */
+    public JSONObject getPlayerSingleHeroInfo(String heroName) throws JSONException, HeroNotUnlockedException, IllegalHeroNameException {
+        Integer index = getIndex("heroes", heroName);
+
+        if(index == 100)
+            throw new HeroNotUnlockedException(heroName,
+                    (String) PLAYER_INFORMATION.get("name"));
+
+        if(index == 500)
+            throw new IllegalHeroNameException(heroName);
+
+        return (JSONObject) PLAYER_INFORMATION
+                .getJSONArray("heroes")
+                .get(index);
+    }
+
+    /**
+     * This method return the player's current level of the given hero name.
+     * @param heroName Hero name. Example: Barbarian King, Archer Queen etc.
+     *                 See the list of all heroes {@link de.ra.coc.COCData.Heroes}
+     * @return Current level of the hero.
+     * @throws JSONException If the processing of JSONObject is failed.
+     * @throws JSONException If the processing of JSONObject is failed.
+     * @throws HeroNotUnlockedException If the provided hero name is not unlocked by the player.
+     * @throws IllegalHeroNameException If the provided hero name is not valid.
+     */
+    public Integer getPlayerHeroLevel(String heroName) throws JSONException, HeroNotUnlockedException, IllegalHeroNameException {
+        return (Integer) getPlayerSingleHeroInfo(heroName).get("level");
+    }
+
+    /**
+     * This method returns the Player's current heroes information in JSONArray format.
+     * @return Player's current heroes information in JSONArray format.
+     * @throws JSONException If the processing of JSONObject is failed.
+     */
+    public JSONArray getPlayerHeroesInformation() throws JSONException {
+        return PLAYER_INFORMATION.getJSONArray("heroes");
+    }
+
+    /**
+     * This method return the maximum level of a hero unlocked by the player.
+     * @param heroName Hero name. Example: Barbarian King, Archer Queen etc.
+     *                 See the list of all heroes {@link de.ra.coc.COCData.Heroes}
+     * @return Maximum level of a hero unlocked by the player.
+     * @throws JSONException If the processing of JSONObject is failed.
+     * @throws HeroNotUnlockedException If the provided hero name is not unlocked by the player.
+     * @throws IllegalHeroNameException If the provided hero name is not valid.
+     */
+    public Integer getPlayerHeroMaxLevel(String heroName) throws JSONException, HeroNotUnlockedException, IllegalHeroNameException {
+        return (Integer) getPlayerSingleHeroInfo(heroName).get("maxLevel");
+    }
+
+    /**
+     * This method returns the village name of the given hero.
+     * @param heroName Hero name. Example: Barbarian King, Archer Queen etc.
+     *                 See the list of all heroes {@link de.ra.coc.COCData.Heroes}
+     * @return Village name of the given hero.
+     * @throws JSONException If the processing of JSONObject is failed.
+     * @throws HeroNotUnlockedException If the provided hero name is not unlocked by the player.
+     * @throws IllegalHeroNameException If the provided hero name is not valid.
+     */
+    public String getPlayerHeroVillage(String heroName) throws JSONException, HeroNotUnlockedException, IllegalHeroNameException {
+        return (String) getPlayerSingleHeroInfo(heroName).get("village");
+    }
+
+    /**
+     * This method returns the village name of the given hero.
+     * @param heroName Hero name. Example: Barbarian King, Archer Queen etc.
+     *                 See the list of all heroes {@link de.ra.coc.COCData.Heroes}
+     * @return Village name of the given hero.
+     * @throws JSONException If the processing of JSONObject is failed.
+     * @throws HeroNotUnlockedException If the provided hero name is not unlocked by the player.
+     * @throws IllegalHeroNameException If the provided hero name is not valid.
+     */
+    public String getPlayerHeroName(String heroName) throws JSONException, HeroNotUnlockedException, IllegalHeroNameException {
+        return (String) getPlayerSingleHeroInfo(heroName).get("name");
     }
 }

@@ -1,5 +1,6 @@
 package de.ra.coc;
 
+import de.ra.coc.COCData.Heroes;
 import de.ra.coc.COCData.HomeVillage.ElixirSpell;
 import de.ra.coc.COCData.HomeVillage.ElixirTroop;
 import de.ra.exception.*;
@@ -68,7 +69,7 @@ public class COCPlayersTest {
 
     @Test
     public void PlayersProfile() throws JSONException, SpellNotUnlockedException, TroopNotUnlockedException,
-            IllegalSpellNameException, IllegalTroopNameException, COCServerConnectionException {
+            IllegalSpellNameException, IllegalTroopNameException, COCServerConnectionException, HeroNotUnlockedException, IllegalHeroNameException {
         COCPlayers player1 = new COCPlayers(JWTOKEN, PLAYER_TAG);
 
         System.out.println("Player Name = " + player1.getPlayerName());
@@ -86,18 +87,26 @@ public class COCPlayersTest {
         System.out.println("Attack Won = " + player1.getPlayerAttackWin());
         System.out.println("Troop donation count = " + player1.getPlayerTroopsDonationCount());
         System.out.println("Troop received count = " + player1.getPlayerTroopsReceivedCount());
+
         System.out.println("Archer Level = " + player1.getPlayerTroopLevel(ElixirTroop.ARCHER));
         System.out.println("Archer Max level = " + player1.getPlayerTroopMaxLevel(ElixirTroop.ARCHER));
         System.out.println("Archer village name = " + player1.getPlayerTroopVillage(ElixirTroop.ARCHER));
         System.out.println("Archer troop name = " + player1.getPlayerTroopName(ElixirTroop.ARCHER));
         System.out.println("Baby Dragon Information = " + player1.getPlayerSingleTroopInfo(ElixirTroop.BABY_DRAGON));
         System.out.println("Complete troops information = " + player1.getPlayerTroopsInformation());
+
         System.out.println("Freeze Spell Level = " + player1.getPlayerSpellLevel(ElixirSpell.FREEZE_SPELL));
-        System.out.println("Freeze Spell Max level = " + player1.getPlayerSpellLevel(ElixirSpell.FREEZE_SPELL));
-        System.out.println("Freeze Spell village name = " + player1.getPlayerSpellLevel(ElixirSpell.FREEZE_SPELL));
-        System.out.println("Freeze Spell troop name = " + player1.getPlayerSpellLevel(ElixirSpell.FREEZE_SPELL));
-        System.out.println("Healing Spell Information = " + player1.getPlayerSpellLevel(ElixirSpell.HEALING_SPELL));
+        System.out.println("Freeze Spell Max level = " + player1.getPlayerSpellMaxLevel(ElixirSpell.FREEZE_SPELL));
+        System.out.println("Freeze Spell village name = " + player1.getPlayerSpellVillage(ElixirSpell.FREEZE_SPELL));
+        System.out.println("Freeze Spell name = " + player1.getPlayerSpellName(ElixirSpell.FREEZE_SPELL));
+        System.out.println("Healing Spell Information = " + player1.getPlayerSingleSpellInfo(ElixirSpell.HEALING_SPELL));
         System.out.println("Complete Spells information = " + player1.getPlayerSpellsInformation());
 
+        System.out.println("Barbarian King Level = " + player1.getPlayerHeroLevel(Heroes.BARBARIAN_KING));
+        System.out.println("Barbarian King Max level = " + player1.getPlayerHeroMaxLevel(Heroes.BARBARIAN_KING));
+        System.out.println("Barbarian King village name = " + player1.getPlayerHeroVillage(Heroes.BARBARIAN_KING));
+        System.out.println("Barbarian King troop name = " + player1.getPlayerHeroName(Heroes.BARBARIAN_KING));
+        System.out.println("Archer Queen Information = " + player1.getPlayerSingleHeroInfo(Heroes.ARCHER_QUEEN));
+        System.out.println("Complete Heroes information = " + player1.getPlayerHeroesInformation());
     }
 }

@@ -8,6 +8,9 @@ public class SpellNotUnlockedException extends Exception{
     /**
      * Constructs a new SpellNotUnlockedException with the detailed message.
      * @param spellName Spell name. Example: Lightning spell, Haste spells etc.
+     *                  See the list of all spells
+     *                  {@link de.ra.coc.COCData.HomeVillage.ElixirSpell}
+     *                  {@link de.ra.coc.COCData.HomeVillage.DarkElixirSpell}
      * @param playerName Player name.
      */
     public SpellNotUnlockedException(String spellName, String playerName) {
