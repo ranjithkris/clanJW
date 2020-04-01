@@ -67,7 +67,8 @@ public class COCPlayersTest {
     }
 
     @Test
-    public void PlayersProfile() throws JSONException, ArmyNotUnlockedException, IllegalArmyNameException, COCServerConnectionException {
+    public void PlayersProfile() throws JSONException, SpellNotUnlockedException, TroopNotUnlockedException,
+            IllegalSpellNameException, IllegalTroopNameException, COCServerConnectionException {
         COCPlayers player1 = new COCPlayers(JWTOKEN, PLAYER_TAG);
 
         System.out.println("Player Name = " + player1.getPlayerName());
