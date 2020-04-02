@@ -16,7 +16,7 @@ To access the information related to a player, create a
 information related to a single player. To know the methods and fields see 
 [`ClashOfClansLibrary`](https://ranjithmasthikatte.github.io/ClashOfClansLibrary/)
 
-#Example
+# Example
 ```.java
 COCPlayers player1 = new COCPlayers(JWTOKEN, PLAYER_TAG);
 
