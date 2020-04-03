@@ -1,7 +1,5 @@
 package de.ra.coc.COCData.HomeVillage;
 
-import com.sun.xml.internal.fastinfoset.algorithm.IEEE754FloatingPointEncodingAlgorithm;
-
 import java.util.ArrayList;
 import java.util.List;
 
