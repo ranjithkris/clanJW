@@ -6,18 +6,7 @@ provided by the Supercell (https://developer.clashofclans.com/).
 # How to use ClashOfClansLibrary?
 First, download the jar file from the 
 [`Releases`](https://github.com/ranjithmasthikatte/ClashOfClansLibrary/releases)
-and add the ClashOfClansLibrary jar file to the your project's Build Path. Additionally 
-Json library is also required. Download the JSON jar file or add the below Maven dependency.
-```.java
-<dependencies>
-    <!-- https://mvnrepository.com/artifact/org.json/json -->
-    <dependency>
-        <groupId>org.json</groupId>
-        <artifactId>json</artifactId>
-        <version>20090211</version>
-    </dependency>
-<dependencies>
-```
+and add the ClashOfClansLibrary jar file to the your project's Build Path. 
 
 To access a Clash of Clans server, JSON Web Token is required. To get the JSON Web Token
 and to know about the Clash of Clans API see (https://developer.clashofclans.com/)
