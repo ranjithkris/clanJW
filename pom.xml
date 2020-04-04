@@ -61,7 +61,7 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${basedir}/target/Crunchify</outputDirectory>
+                            <outputDirectory>${basedir}/target/ClashOfClansLibrary</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>resources</directory>
