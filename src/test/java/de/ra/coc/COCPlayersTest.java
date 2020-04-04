@@ -108,5 +108,14 @@ public class COCPlayersTest {
         System.out.println("Barbarian King troop name = " + player1.getPlayerHeroName(Heroes.BARBARIAN_KING));
         System.out.println("Archer Queen Information = " + player1.getPlayerSingleHeroInfo(Heroes.ARCHER_QUEEN));
         System.out.println("Complete Heroes information = " + player1.getPlayerHeroesInformation());
+
+        System.out.println("League Name = " + player1.getPlayerLeagueName());
+        System.out.println("League tiny badge = " + player1.getPlayerLeagueTinyBadgeUrl());
+        System.out.println("League small badge = " + player1.getPlayerLeagueSmallBadgeUrl());
+        System.out.println("League medium badge = " + player1.getPlayerLeagueMediumBadgeUrl());
+        System.out.println("League ID = " + player1.getPlayerLeagueID());
+
+        System.out.println("Player's Achievements = " + player1.getPlayerAchievements());
+        System.out.println("Player's Labels = " + player1.getPlayerLabels());
     }
 }

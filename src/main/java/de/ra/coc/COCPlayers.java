@@ -102,7 +102,7 @@ public class COCPlayers {
             }
 
             PLAYER_INFORMATION = InputToJson.getJSONObject(input);
-
+            System.out.println(PLAYER_INFORMATION);
         } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
@@ -313,7 +313,7 @@ public class COCPlayers {
      * @throws org.json.JSONException If the processing of JSONObject is failed.
      */
     public Integer getPlayerVersusBattleWin() throws JSONException {
-        return PLAYER_INFORMATION.has("versusBattleWinCount")? (Integer) PLAYER_INFORMATION.get("versusBattleWinCount") : 0;
+        return PLAYER_INFORMATION.has("versusBattleWinCount") ? (Integer) PLAYER_INFORMATION.get("versusBattleWinCount") : 0;
     }
 
     /**
@@ -323,7 +323,7 @@ public class COCPlayers {
      * @throws org.json.JSONException If the processing of JSONObject is failed.
      */
     public Integer getPlayerAttackWin() throws JSONException {
-        return PLAYER_INFORMATION.has("attackWins")? (Integer) PLAYER_INFORMATION.get("attackWins") : 0;
+        return PLAYER_INFORMATION.has("attackWins") ? (Integer) PLAYER_INFORMATION.get("attackWins") : 0;
     }
 
     /**
@@ -333,7 +333,7 @@ public class COCPlayers {
      * @throws org.json.JSONException If the processing of JSONObject is failed.
      */
     public Integer getPlayerTroopsDonationCount() throws JSONException {
-        return PLAYER_INFORMATION.has("donations")? (Integer) PLAYER_INFORMATION.get("donations") : 0;
+        return PLAYER_INFORMATION.has("donations") ? (Integer) PLAYER_INFORMATION.get("donations") : 0;
     }
 
     /**
@@ -343,7 +343,7 @@ public class COCPlayers {
      * @throws org.json.JSONException If the processing of JSONObject is failed.
      */
     public Integer getPlayerTroopsReceivedCount() throws JSONException {
-        return PLAYER_INFORMATION.has("donationsReceived")? (Integer) PLAYER_INFORMATION.get("donationsReceived") : 0;
+        return PLAYER_INFORMATION.has("donationsReceived") ? (Integer) PLAYER_INFORMATION.get("donationsReceived") : 0;
     }
 
     private Integer getIndex(String category, String key) throws JSONException {
@@ -676,5 +676,139 @@ public class COCPlayers {
      */
     public String getPlayerHeroName(String heroName) throws JSONException, HeroNotUnlockedException, IllegalHeroNameException {
         return (String) getPlayerSingleHeroInfo(heroName).get("name");
+    }
+
+    /**
+     * This method returns the player's league name.
+     *
+     * @return Player's league name. If the player is not assigned to any league, then
+     * this method returns a value "League Not Assigned"
+     * @throws JSONException If the processing of JSONObject is failed.
+     */
+    public String getPlayerLeagueName() throws JSONException {
+        String name = "League Not Assigned";
+        if (PLAYER_INFORMATION.has("league")) {
+            if (PLAYER_INFORMATION.getJSONObject("league").has("name")) {
+                name = (String) PLAYER_INFORMATION.getJSONObject("league").get("name");
+            }
+        }
+        return name;
+    }
+
+    /**
+     * This method returns the Tiny badge URL of the league earned by the player.
+     * @return Tiny badge URL of the league. If the player is not assigned to any league, then
+     * this method returns a value "League Not Assigned"
+     * @throws JSONException If the processing of JSONObject is failed.
+     */
+    public String getPlayerLeagueTinyBadgeUrl() throws JSONException {
+        String tinyBadgeURL = "League Not Assigned";
+        if (PLAYER_INFORMATION.has("league")) {
+            if (PLAYER_INFORMATION.getJSONObject("league").has("iconUrls")) {
+                if(PLAYER_INFORMATION.getJSONObject("league").getJSONObject("iconUrls").has("tiny"))
+                    tinyBadgeURL = (String) PLAYER_INFORMATION.getJSONObject("league").getJSONObject("iconUrls").get("tiny");
+            }
+        }
+        return tinyBadgeURL;
+    }
+
+    /**
+     * This method returns the Small badge URL of the league earned by the player.
+     * @return Small badge URL of the league. If the player is not assigned to any league, then
+     * this method returns a value "League Not Assigned"
+     * @throws JSONException If the processing of JSONObject is failed.
+     */
+    public String getPlayerLeagueSmallBadgeUrl() throws JSONException {
+        String smallBadgeURL = "League Not Assigned";
+        if (PLAYER_INFORMATION.has("league")) {
+            if (PLAYER_INFORMATION.getJSONObject("league").has("iconUrls")) {
+                if(PLAYER_INFORMATION.getJSONObject("league").getJSONObject("iconUrls").has("small"))
+                    smallBadgeURL = (String) PLAYER_INFORMATION.getJSONObject("league").getJSONObject("iconUrls").get("small");
+            }
+        }
+        return smallBadgeURL;
+    }
+
+    /**
+     * This method returns the Medium badge URL of the league earned by the player.
+     * @return Medium badge URL of the league. If the player is not assigned to any league, then
+     * this method returns a value "League Not Assigned"
+     * @throws JSONException If the processing of JSONObject is failed.
+     */
+    public String getPlayerLeagueMediumBadgeUrl() throws JSONException {
+        String mediumBadgeURL = "League Not Assigned";
+        if (PLAYER_INFORMATION.has("league")) {
+            if (PLAYER_INFORMATION.getJSONObject("league").has("iconUrls")) {
+                if(PLAYER_INFORMATION.getJSONObject("league").getJSONObject("iconUrls").has("medium"))
+                    mediumBadgeURL = (String) PLAYER_INFORMATION.getJSONObject("league").getJSONObject("iconUrls").get("medium");
+            }
+        }
+        return mediumBadgeURL;
+    }
+
+    /**
+     * This method returns the League ID of the league earned by the player.
+     * @return League ID of the league earned by the player. If the player is not assigned to any league, then
+     * this method returns a value 0
+     * @throws JSONException If the processing of JSONObject is failed.
+     */
+    public Integer getPlayerLeagueID() throws JSONException {
+        Integer leagueID = 0;
+        if (PLAYER_INFORMATION.has("league")) {
+            if (PLAYER_INFORMATION.getJSONObject("league").has("id")) {
+                leagueID = (Integer) PLAYER_INFORMATION.getJSONObject("league").get("id");
+            }
+        }
+        return leagueID;
+    }
+
+    /**
+     * This method returns the achievements of player in JSONArray format.
+     * @return Achievements of player in JSONArray format. If there is no achievements then this method
+     * returns the empty JSONArray.
+     * Format of each JSONObject in the returned JSONArray is as below.
+     * <pre>
+     *     <code>
+     *         {
+     *             name : "Achievement Name in String type"
+     *             completionInfo : "completionInfo in String type"
+     *             stars : "stars in Integer type"
+     *             village : "village Name in String type"
+     *             value : "value in Integer type"
+     *             target : "target in Integer type"
+     *             info : "info in String type"
+     *         }
+     *     </code>
+     * </pre>
+     * @throws JSONException If the processing of JSONObject is failed.
+
+     */
+    public JSONArray getPlayerAchievements() throws JSONException {
+        return PLAYER_INFORMATION.has("achievements")?
+                PLAYER_INFORMATION.getJSONArray("achievements") : new JSONArray("[]");
+    }
+
+    /**
+     * This method returns the labels of player in JSONArray format.
+     * @return Labels of player in JSONArray format. If there is no achievements then this method
+     * returns the empty JSONArray.
+     * Format of each JSONObject in the returned JSONArray is as below.
+     * <pre>
+     *     <code>
+     *         {
+     *             name : "Label Name in String type"
+     *             iconUrls : {
+     *                 small : "URL to small icon in String type"
+     *                 medium : "URL to medium icon in String type"
+     *             }
+     *             id : "Label id in Integer type"
+     *         }
+     *     </code>
+     * </pre>
+     * @throws JSONException If the processing of JSONObject is failed.
+     */
+    public JSONArray getPlayerLabels() throws JSONException {
+        return PLAYER_INFORMATION.has("labels")?
+                PLAYER_INFORMATION.getJSONArray("labels") : new JSONArray("[]");
     }
 }
