@@ -697,6 +697,7 @@ public class COCPlayers {
 
     /**
      * This method returns the Tiny badge URL of the league earned by the player.
+     *
      * @return Tiny badge URL of the league. If the player is not assigned to any league, then
      * this method returns a value "League Not Assigned"
      * @throws JSONException If the processing of JSONObject is failed.
@@ -705,7 +706,7 @@ public class COCPlayers {
         String tinyBadgeURL = "League Not Assigned";
         if (PLAYER_INFORMATION.has("league")) {
             if (PLAYER_INFORMATION.getJSONObject("league").has("iconUrls")) {
-                if(PLAYER_INFORMATION.getJSONObject("league").getJSONObject("iconUrls").has("tiny"))
+                if (PLAYER_INFORMATION.getJSONObject("league").getJSONObject("iconUrls").has("tiny"))
                     tinyBadgeURL = (String) PLAYER_INFORMATION.getJSONObject("league").getJSONObject("iconUrls").get("tiny");
             }
         }
@@ -714,6 +715,7 @@ public class COCPlayers {
 
     /**
      * This method returns the Small badge URL of the league earned by the player.
+     *
      * @return Small badge URL of the league. If the player is not assigned to any league, then
      * this method returns a value "League Not Assigned"
      * @throws JSONException If the processing of JSONObject is failed.
@@ -722,7 +724,7 @@ public class COCPlayers {
         String smallBadgeURL = "League Not Assigned";
         if (PLAYER_INFORMATION.has("league")) {
             if (PLAYER_INFORMATION.getJSONObject("league").has("iconUrls")) {
-                if(PLAYER_INFORMATION.getJSONObject("league").getJSONObject("iconUrls").has("small"))
+                if (PLAYER_INFORMATION.getJSONObject("league").getJSONObject("iconUrls").has("small"))
                     smallBadgeURL = (String) PLAYER_INFORMATION.getJSONObject("league").getJSONObject("iconUrls").get("small");
             }
         }
@@ -731,6 +733,7 @@ public class COCPlayers {
 
     /**
      * This method returns the Medium badge URL of the league earned by the player.
+     *
      * @return Medium badge URL of the league. If the player is not assigned to any league, then
      * this method returns a value "League Not Assigned"
      * @throws JSONException If the processing of JSONObject is failed.
@@ -739,7 +742,7 @@ public class COCPlayers {
         String mediumBadgeURL = "League Not Assigned";
         if (PLAYER_INFORMATION.has("league")) {
             if (PLAYER_INFORMATION.getJSONObject("league").has("iconUrls")) {
-                if(PLAYER_INFORMATION.getJSONObject("league").getJSONObject("iconUrls").has("medium"))
+                if (PLAYER_INFORMATION.getJSONObject("league").getJSONObject("iconUrls").has("medium"))
                     mediumBadgeURL = (String) PLAYER_INFORMATION.getJSONObject("league").getJSONObject("iconUrls").get("medium");
             }
         }
@@ -748,6 +751,7 @@ public class COCPlayers {
 
     /**
      * This method returns the League ID of the league earned by the player.
+     *
      * @return League ID of the league earned by the player. If the player is not assigned to any league, then
      * this method returns a value 0
      * @throws JSONException If the processing of JSONObject is failed.
@@ -764,6 +768,7 @@ public class COCPlayers {
 
     /**
      * This method returns the achievements of player in JSONArray format.
+     *
      * @return Achievements of player in JSONArray format. If there is no achievements then this method
      * returns the empty JSONArray.
      * Format of each JSONObject in the returned JSONArray is as below.
@@ -781,15 +786,15 @@ public class COCPlayers {
      *     </code>
      * </pre>
      * @throws JSONException If the processing of JSONObject is failed.
-
      */
     public JSONArray getPlayerAchievements() throws JSONException {
-        return PLAYER_INFORMATION.has("achievements")?
+        return PLAYER_INFORMATION.has("achievements") ?
                 PLAYER_INFORMATION.getJSONArray("achievements") : new JSONArray("[]");
     }
 
     /**
      * This method returns the labels of player in JSONArray format.
+     *
      * @return Labels of player in JSONArray format. If there is no achievements then this method
      * returns the empty JSONArray.
      * Format of each JSONObject in the returned JSONArray is as below.
@@ -808,7 +813,7 @@ public class COCPlayers {
      * @throws JSONException If the processing of JSONObject is failed.
      */
     public JSONArray getPlayerLabels() throws JSONException {
-        return PLAYER_INFORMATION.has("labels")?
+        return PLAYER_INFORMATION.has("labels") ?
                 PLAYER_INFORMATION.getJSONArray("labels") : new JSONArray("[]");
     }
 }
