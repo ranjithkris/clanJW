@@ -12,10 +12,11 @@ Json library is also required. Download the JSON jar file or add the below Maven
 <dependencies>
     <!-- https://mvnrepository.com/artifact/org.json/json -->
     <dependency>
-    <groupId>org.json</groupId>
-    <artifactId>json</artifactId>
-    <version>20090211</version>
-</dependency>
+        <groupId>org.json</groupId>
+        <artifactId>json</artifactId>
+        <version>20090211</version>
+    </dependency>
+<dependencies>
 ```
 
 To access a Clash of Clans server, JSON Web Token is required. To get the JSON Web Token

@@ -36,7 +36,7 @@ public class COCPlayers {
     private static final String API_VERSION = "v1";
 
     /**
-     * This constructor will set the JSON Web Token and player's tag and retrives the players information
+     * Initialize newly constructed COCPlayer with the passed JSON Web Token and player's tag and retrieves the players information
      * from the Clash of Clan server.
      * To get the JSON Web Token see
      * <a href="https://developer.clashofclans.com/">https://developer.clashofclans.com/</a>
@@ -71,7 +71,6 @@ public class COCPlayers {
 
         PLAYER_TAG = myPF.sanitize(PLAYER_TAG);
         COCPlayers.PLAYER_TAG = URLEncoder.encode(PLAYER_TAG, "UTF-8");
-        JSONObject json = null;
 
         try {
             HttpURLConnection connection = (HttpURLConnection) new URL(API_LINK + API_VERSION + "/players/" + COCPlayers.PLAYER_TAG).openConnection();
@@ -105,11 +104,7 @@ public class COCPlayers {
 
             PLAYER_INFORMATION = InputToJson.getJSONObject(input);
 
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
+        } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
     }
@@ -234,7 +229,7 @@ public class COCPlayers {
      * This method returns the player's best trophies in builder base.
      *
      * @return Player's best trophies in builder base.
-     * If the player does not have builder base then this method rreturn -1.
+     * If the player does not have builder base then this method returns -1.
      * @throws org.json.JSONException If the processing of JSONObject is failed.
      */
     public Integer getPlayerBestVersusTrophies() throws JSONException {
