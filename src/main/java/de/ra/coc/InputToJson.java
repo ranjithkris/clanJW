@@ -29,6 +29,7 @@ public class InputToJson {
             }
         }
 
+        System.out.println(response);
         if (!(response.length() == 0)) {
             try {
                 json = new JSONObject(response.toString());
