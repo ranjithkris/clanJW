@@ -1,12 +1,12 @@
-# What is ClashOfClansLibrary?
-[`ClashOfClansLibrary`](https://ranjithmasthikatte.github.io/ClashOfClansLibrary/) 
-is a Java library to access Clash of Clans game related data using the REST API 
+# What is clanJW?
+[`clanJW`](https://ranjithmasthikatte.github.io/clanJW/) 
+is a Java Wrapper to access Clash of Clans game related data using the REST API 
 provided by the Supercell (https://developer.clashofclans.com/).
 
-# How to use ClashOfClansLibrary?
+# How to use clanJW?
 First, download the jar file from the 
-[`Releases`](https://github.com/ranjithmasthikatte/ClashOfClansLibrary/releases)
-and add the ClashOfClansLibrary jar file to the your project's Build Path. 
+[`Releases`](https://github.com/ranjithmasthikatte/clanJW/releases)
+and add the clanJW jar file to the your project's Build Path. 
 
 To access a Clash of Clans server, JSON Web Token is required. To get the JSON Web Token
 and to know about the Clash of Clans API see (https://developer.clashofclans.com/)
@@ -14,7 +14,7 @@ and to know about the Clash of Clans API see (https://developer.clashofclans.com
 To access the information related to a player, create a 
 `COCPlayers` object and use this object to access any 
 information related to a single player. To know the methods and fields see 
-[`ClashOfClansLibrary`](https://ranjithmasthikatte.github.io/ClashOfClansLibrary/)
+[`clanJW`](https://ranjithmasthikatte.github.io/clanJW/)
 
 # Example
 ```.java
