@@ -20,7 +20,7 @@ public class ClanSearchFactory {
      * To get the JSON Web Token see
      * <a href="https://developer.clashofclans.com/">https://developer.clashofclans.com/</a>
      *
-     * @param JWToken
+     * @param JWToken Json Wen Token from clash of clan server.
      */
     public ClanSearchFactory(String JWToken) {
         ClanSearchFactory.JWToken = JWToken;
