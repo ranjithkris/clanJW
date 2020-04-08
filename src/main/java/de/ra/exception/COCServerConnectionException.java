@@ -4,7 +4,7 @@ package de.ra.exception;
  * This class is a throwable exception to indicated that the connection to the
  * Clash of Clan server is failed.
  */
-public class COCServerConnectionException extends Exception{
+public class COCServerConnectionException extends ClanJWException {
     /**
      * Constructs a new COCServerConnectionException with the detailed message and reason.
      * @param statusCode Status code from the Clash of Clan server.

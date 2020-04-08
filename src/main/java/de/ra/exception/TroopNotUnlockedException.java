@@ -4,7 +4,7 @@ package de.ra.exception;
  * This class is a throwable exception to indicate that the given troop name is not
  * yet unlocked by the player.
  */
-public class TroopNotUnlockedException extends Exception{
+public class TroopNotUnlockedException extends ClanJWException {
     /**
      * Constructs a new TroopNotUnlockedException with the detailed message.
      * @param troopName Troop name. Example: ARCHER, WIZARD etc.

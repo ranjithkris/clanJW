@@ -34,7 +34,7 @@ public class COCPlayersTest {
     }
 
     @Test
-    public void PlayersClanInformation() throws JSONException, COCServerConnectionException, UnsupportedEncodingException, InvalidPlayerTagException {
+    public void PlayersClanInformation() throws JSONException, ClanJWException, UnsupportedEncodingException {
         COCPlayers player1 = new COCPlayers(JWTOKEN, PLAYER_TAG);
 
         //Check for getPlayerClanInformation() method.
@@ -68,8 +68,7 @@ public class COCPlayersTest {
     }
 
     @Test
-    public void PlayersProfile() throws JSONException, SpellNotUnlockedException, TroopNotUnlockedException,
-            IllegalSpellNameException, IllegalTroopNameException, COCServerConnectionException, HeroNotUnlockedException, IllegalHeroNameException, UnsupportedEncodingException, InvalidPlayerTagException {
+    public void PlayersProfile() throws JSONException, ClanJWException , UnsupportedEncodingException {
         COCPlayers player1 = new COCPlayers(JWTOKEN, PLAYER_TAG);
 
         System.out.println("Player Name = " + player1.getPlayerName());

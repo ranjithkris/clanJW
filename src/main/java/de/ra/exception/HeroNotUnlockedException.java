@@ -4,7 +4,7 @@ package de.ra.exception;
  * This class is a throwable exception to indicate that the given hero name is not
  * yet unlocked by the player.
  */
-public class HeroNotUnlockedException extends Exception{
+public class HeroNotUnlockedException extends ClanJWException {
     /**
      * Constructs a new HeroNotUnlockedException with the detailed message.
      * @param heroName Hero name. Example: Barbarian King, Archer Queen etc.

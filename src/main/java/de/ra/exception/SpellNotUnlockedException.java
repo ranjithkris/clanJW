@@ -4,7 +4,7 @@ package de.ra.exception;
  * This class is a throwable exception to indicate that the given spell name is not
  * yet unlocked by the player.
  */
-public class SpellNotUnlockedException extends Exception{
+public class SpellNotUnlockedException extends ClanJWException {
     /**
      * Constructs a new SpellNotUnlockedException with the detailed message.
      * @param spellName Spell name. Example: Lightning spell, Haste spells etc.
