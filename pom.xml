@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>ClashOfClansLibrary</artifactId>
+    <artifactId>clanJW</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
@@ -61,7 +61,7 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${basedir}/target/ClashOfClansLibrary</outputDirectory>
+                            <outputDirectory>${basedir}/target/clanJW</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>resources</directory>
