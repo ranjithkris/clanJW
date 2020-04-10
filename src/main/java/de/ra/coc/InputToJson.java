@@ -8,7 +8,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class InputToJson {
-    protected static JSONObject getJSONObject(InputStream input) {
+    public static JSONObject getJSONObject(InputStream input) {
         JSONObject json = null;
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(input));
@@ -29,7 +29,6 @@ public class InputToJson {
             }
         }
 
-        System.out.println(response);
         if (!(response.length() == 0)) {
             try {
                 json = new JSONObject(response.toString());

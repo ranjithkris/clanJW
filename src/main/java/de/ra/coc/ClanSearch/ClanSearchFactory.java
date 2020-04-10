@@ -1,17 +1,32 @@
-package de.ra.coc;
+package de.ra.coc.ClanSearch;
 
 
 import java.io.UnsupportedEncodingException;
 
+/**
+ * ClanSearchFactory class is used to build the ClanSearch object with different filters.
+ */
 public class ClanSearchFactory {
+    /**
+     * Constant to refer the after cursor position.
+     */
+    public static final String AFTER = "after";
+
+    /**
+     * Constant to refer the before cursor position.
+     */
+    public static final String BEFORE = "before";
+
     private String clanNameCriteria = null;
+    private String afterCursor = null;
+    private String beforeCursor = null;
     private Integer warFrequencyCriteria = -1;
     private Integer locationIDCriteria = -1;
     private Integer minMembersCriteria = -1;
     private Integer maxMembersCriteria = -1;
     private Integer minClanPointsCriteria = -1;
     private Integer minClanLevelCriteria = -1;
-    private Integer resultLimit = -1;
+    private Integer resultLimit = 20;
     private static String JWToken;
 
     /**
@@ -115,6 +130,28 @@ public class ClanSearchFactory {
     }
 
     /**
+     * This method sets the cursor with the given position.
+     * Position values are after and before. If invalid positions are passed to this method, then by default it this
+     * method will set the position to after. See the valid position values
+     * {@link de.ra.coc.ClanSearch.ClanSearchFactory}
+     *
+     * @param position Position of the cursor
+     * @param cursor   Cursor.
+     * @return returns the ClanSearchFactory.
+     */
+    public ClanSearchFactory setCursor(String position, String cursor) {
+        if (position == BEFORE) {
+            this.afterCursor = null;
+            this.beforeCursor = cursor;
+        } else {
+            this.afterCursor = cursor;
+            this.beforeCursor = null;
+        }
+
+        return this;
+    }
+
+    /**
      * This method generates the ClanSearch object with the given search criteria.
      *
      * @return Returns the ClanSearch object with the search criteria.
@@ -131,6 +168,8 @@ public class ClanSearchFactory {
         clanSearch.minClanPointsCriteria = minClanPointsCriteria;
         clanSearch.minClanLevelCriteria = minClanLevelCriteria;
         clanSearch.resultLimit = resultLimit;
+        clanSearch.afterCursor = afterCursor;
+        clanSearch.beforeCursor = beforeCursor;
 
         return clanSearch.buildClanSearch();
     }

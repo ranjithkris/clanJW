@@ -116,15 +116,5 @@ public class COCPlayersTest {
 
         System.out.println("Player's Achievements = " + player1.getPlayerAchievements());
         System.out.println("Player's Labels = " + player1.getPlayerLabels());
-
-        //Testing
-        ClanSearch myCS = new ClanSearchFactory(JWTOKEN)
-                .setClanNameCriteria("Gods Angel")
-                .setResultLimit(2)
-                .build();
-
-        myCS.buildClanSearch();
-        myCS.search();
-
     }
 }

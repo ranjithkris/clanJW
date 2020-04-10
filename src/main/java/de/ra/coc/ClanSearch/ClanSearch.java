@@ -1,13 +1,11 @@
-package de.ra.coc;
+package de.ra.coc.ClanSearch;
 
-import de.ra.coc.COCPlayers;
 import de.ra.coc.InputToJson;
 import de.ra.exception.COCServerConnectionException;
-import de.ra.exception.InvalidPlayerTagException;
+import de.ra.exception.InvalidJsonObject;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.owasp.html.PolicyFactory;
-import org.owasp.html.Sanitizers;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,16 +14,22 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
+/**
+ * ClanSearch class is used to search for clans with different filters.
+ */
 public class ClanSearch {
     protected String clanNameCriteria = null;
+    protected String afterCursor = null;
+    protected String beforeCursor = null;
     protected Integer warFrequencyCriteria = -1;
     protected Integer locationIDCriteria = -1;
     protected Integer minMembersCriteria = -1;
     protected Integer maxMembersCriteria = -1;
     protected Integer minClanPointsCriteria = -1;
     protected Integer minClanLevelCriteria = -1;
-    protected Integer resultLimit = -1;
+    protected Integer resultLimit = 20;
 
+    private JSONObject searchResult = null;
     private static String JWTOKEN;
     private static final String API_LINK = "https://api.clashofclans.com/";
     private static final String API_VERSION = "v1";
@@ -43,6 +47,8 @@ public class ClanSearch {
     }
 
     protected ClanSearch buildClanSearch() throws UnsupportedEncodingException {
+        completeLink = API_LINK + API_VERSION + "/clans?";
+
         String param = "";
         if (clanNameCriteria != null && !clanNameCriteria.isEmpty())
             param += "name=" + URLEncoder.encode(clanNameCriteria, "UTF-8") + "&";
@@ -68,9 +74,22 @@ public class ClanSearch {
         if (resultLimit != -1)
             param += "limit=" + resultLimit + "&";
 
+        if (afterCursor != null && beforeCursor == null) {
+            if (afterCursor != "")
+                param += "after=" + afterCursor + "&";
+        } else if (afterCursor == null && beforeCursor != null) {
+            if (beforeCursor != "")
+                param += "before=" + beforeCursor + "&";
+        } else if (afterCursor != null && beforeCursor != null) {
+            if (afterCursor != "")
+                param += "after=" + afterCursor + "&";
+        }
+
         if (param.length() > 0) {
             completeLink += param.substring(0, param.length() - 1);
         }
+
+
         return this;
     }
 
@@ -82,7 +101,6 @@ public class ClanSearch {
      */
     public void search() throws COCServerConnectionException {
 
-        System.out.println(completeLink);
         try {
             HttpURLConnection connection = (HttpURLConnection) new URL(completeLink).openConnection();
             connection.setRequestProperty("Accept", "application/json");
@@ -91,13 +109,12 @@ public class ClanSearch {
             InputStream input;
             int statusCode = connection.getResponseCode();
 
-            System.out.println("Status code = " + statusCode);
             if (statusCode >= 200 && statusCode < 400) {
                 input = connection.getInputStream();
             } else {
                 input = connection.getErrorStream();
                 JSONObject response = InputToJson.getJSONObject(input);
-                System.out.println(response);
+
                 String reason = "";
                 String message = "";
                 if (response.has("reason"))
@@ -111,10 +128,72 @@ public class ClanSearch {
                         message);
             }
 
-            JSONObject jo = InputToJson.getJSONObject(input);
-            System.out.println(jo);
+            searchResult = InputToJson.getJSONObject(input);
+
         } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * This method returns the after cursor of the clan search result retrieved from the server.
+     *
+     * @return After cursor of the clan search result.
+     * @throws COCServerConnectionException If the connection to the clash of clan server is failed.
+     * @throws JSONException                If fails in processing the JSON.
+     * @throws InvalidJsonObject            If the retrieved Json data is invalid.
+     */
+    public String getAfterCursor() throws COCServerConnectionException, JSONException, InvalidJsonObject {
+        if (searchResult == null)
+            search();
+
+        if (searchResult.has("paging"))
+            if (searchResult.getJSONObject("paging").has("cursors"))
+                if (searchResult.getJSONObject("paging").getJSONObject("cursors").has("after"))
+                    return (String) searchResult.getJSONObject("paging").getJSONObject("cursors").get("after");
+                else
+                    return "";
+
+        throw new InvalidJsonObject();
+    }
+
+    /**
+     * This method returns the before cursor of the clan search result retrieved from the server.
+     *
+     * @return Before cursor of the clan search result.
+     * @throws COCServerConnectionException If the connection to the clash of clan server is failed.
+     * @throws JSONException                If fails in processing the JSON.
+     * @throws InvalidJsonObject            If the retrieved Json data is invalid.
+     */
+    public String getBeforeCursor() throws COCServerConnectionException, JSONException, InvalidJsonObject {
+        if (searchResult == null)
+            search();
+
+        if (searchResult.has("paging"))
+            if (searchResult.getJSONObject("paging").has("cursors"))
+                if (searchResult.getJSONObject("paging").getJSONObject("cursors").has("before"))
+                    return (String) searchResult.getJSONObject("paging").getJSONObject("cursors").get("before");
+                else
+                    return "";
+
+        throw new InvalidJsonObject();
+    }
+
+    /**
+     * This method returns the search result retrieved by the search method.
+     *
+     * @return Search results in JSONArray format.
+     * @throws COCServerConnectionException If the connection to the clash of clan server is failed.
+     * @throws JSONException                If fails in processing the JSON data.
+     */
+    public JSONArray getSearchResult() throws JSONException, COCServerConnectionException {
+        if (searchResult == null)
+            search();
+
+        if (searchResult.has("items")) {
+            return searchResult.getJSONArray("items");
+        }
+
+        return new JSONArray("[]");
     }
 }
