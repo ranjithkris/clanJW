@@ -1,4 +1,4 @@
-package de.ra.coc.ClanSearch;
+package de.ra.coc.Clan;
 
 import de.ra.coc.InputToJson;
 import de.ra.exception.COCServerConnectionException;

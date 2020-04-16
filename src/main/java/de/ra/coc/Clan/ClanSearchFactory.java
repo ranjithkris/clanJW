@@ -1,4 +1,4 @@
-package de.ra.coc.ClanSearch;
+package de.ra.coc.Clan;
 
 
 import java.io.UnsupportedEncodingException;
@@ -133,7 +133,7 @@ public class ClanSearchFactory {
      * This method sets the cursor with the given position.
      * Position values are after and before. If invalid positions are passed to this method, then by default it this
      * method will set the position to after. See the valid position values
-     * {@link de.ra.coc.ClanSearch.ClanSearchFactory}
+     * {@link de.ra.coc.Clan.ClanSearchFactory}
      *
      * @param position Position of the cursor
      * @param cursor   Cursor.
