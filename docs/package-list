@@ -3,4 +3,10 @@ de.ra.coc.COCData
 de.ra.coc.COCData.BuilderBase
 de.ra.coc.COCData.HomeVillage
 de.ra.coc.Clan
+de.ra.coc.ServerConnection
 de.ra.exception
+de.ra.exception.IllegalNameException
+de.ra.exception.jsonException
+de.ra.exception.notUnlockedException
+de.ra.exception.serverConnectionException
+de.ra.exception.tagException

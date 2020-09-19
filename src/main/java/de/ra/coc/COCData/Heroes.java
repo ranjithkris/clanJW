@@ -1,9 +1,12 @@
 package de.ra.coc.COCData;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * This class represents the heroes in home village.
+ *
+ * @author Ranjith Krishnamurthy
  */
 public class Heroes {
     /**
@@ -33,6 +36,7 @@ public class Heroes {
 
     /**
      * This method returns the list of all heroes in home village.
+     *
      * @return Complete list of heroes in home village.
      */
     public static List<String> getHeroesList() {

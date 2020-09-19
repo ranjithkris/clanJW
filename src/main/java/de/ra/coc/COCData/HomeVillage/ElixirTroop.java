@@ -5,6 +5,8 @@ import java.util.List;
 
 /**
  * This class represents the Elixir troops in home village.
+ *
+ * @author Ranjith Krishnamurthy
  */
 public class ElixirTroop {
     /**
@@ -79,6 +81,7 @@ public class ElixirTroop {
 
     /**
      * This method returns the list of all elixir troops in home village.
+     *
      * @return Complete list of elixir troops in home village.
      */
     public static List<String> getElixirTroopsList() {

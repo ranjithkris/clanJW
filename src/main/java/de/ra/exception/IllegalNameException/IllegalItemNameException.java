@@ -5,6 +5,8 @@ import de.ra.exception.ClanJWException;
 /**
  * This class is a throwable exception to indicated that the given item name is
  * not valid.
+ *
+ * @author Ranjith Krishnamurthy
  */
 public class IllegalItemNameException extends ClanJWException {
     /**

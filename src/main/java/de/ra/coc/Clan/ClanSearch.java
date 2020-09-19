@@ -1,23 +1,20 @@
 package de.ra.coc.Clan;
 
-import de.ra.coc.InputToJson;
 import de.ra.coc.ServerConnection.HttpConnection;
-import de.ra.exception.serverConnectionException.COCServerConnectionException;
 import de.ra.exception.jsonException.InvalidJsonObject;
+import de.ra.exception.serverConnectionException.COCServerConnectionException;
 import de.ra.exception.tagException.InvalidItemTagException;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.net.URLEncoder;
 
 /**
  * ClanSearch class is used to search for clans with different filters.
+ *
+ * @author Ranjith Krishnamurthy
  */
 public class ClanSearch {
     protected String clanNameCriteria = null;

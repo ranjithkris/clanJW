@@ -5,6 +5,8 @@ import de.ra.exception.ClanJWException;
 /**
  * This class is a throwable exception to indicate that the given item name is not
  * yet unlocked by the player.
+ *
+ * @author Ranjith Krishnamurthy
  */
 public class ItemNotUnlockedException extends ClanJWException {
     /**

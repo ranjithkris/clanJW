@@ -5,6 +5,8 @@ import java.io.UnsupportedEncodingException;
 
 /**
  * ClanSearchFactory class is used to build the ClanSearch object with different filters.
+ *
+ * @author Ranjith Krishnamurthy
  */
 public class ClanSearchFactory {
     /**

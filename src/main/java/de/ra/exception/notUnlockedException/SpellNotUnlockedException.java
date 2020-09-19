@@ -3,6 +3,8 @@ package de.ra.exception.notUnlockedException;
 /**
  * This class is a throwable exception to indicate that the given spell name is not
  * yet unlocked by the player.
+ *
+ * @author Ranjith Krishnamurthy
  */
 public class SpellNotUnlockedException extends ItemNotUnlockedException {
     /**

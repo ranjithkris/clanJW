@@ -7,7 +7,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+/**
+ * This class retrieves the JSONObject from the InputStream connected to the Clash of Clan server.
+ *
+ * @author Ranjith Krishnamurthy
+ */
 public class InputToJson {
+    /**
+     * This method retrieves the JSONObject from the InputStream connected to the Clash of Clan server.
+     *
+     * @param input InputStream connected to Clash of Clan server.
+     * @return JSONObject.
+     */
     public static JSONObject getJSONObject(InputStream input) {
         JSONObject json = null;
 

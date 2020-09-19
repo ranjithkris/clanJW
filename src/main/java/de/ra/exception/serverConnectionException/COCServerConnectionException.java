@@ -5,6 +5,8 @@ import de.ra.exception.ClanJWException;
 /**
  * This class is a throwable exception to indicated that the connection to the
  * Clash of Clan server is failed.
+ *
+ * @author Ranjith Krishnamurthy
  */
 public class COCServerConnectionException extends ClanJWException {
     /**

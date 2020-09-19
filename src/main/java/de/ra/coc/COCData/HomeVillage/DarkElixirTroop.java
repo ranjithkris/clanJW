@@ -5,6 +5,8 @@ import java.util.List;
 
 /**
  * This class represents the Dark Elixir troops in home village.
+ *
+ * @author Ranjith Krishnamurthy
  */
 public class DarkElixirTroop {
     /**
@@ -49,10 +51,11 @@ public class DarkElixirTroop {
 
     /**
      * This method returns the list of all dark elixir troops in home village.
+     *
      * @return Complete list of dark elixir troops in home village.
      */
     public static List<String> getDarkElixirTroopsList() {
-        return new ArrayList<String>(){{
+        return new ArrayList<String>() {{
             add(MINION);
             add(HOG_RIDER);
             add(VALKYRIE);

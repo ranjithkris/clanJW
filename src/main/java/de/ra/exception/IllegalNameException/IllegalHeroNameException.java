@@ -3,6 +3,8 @@ package de.ra.exception.IllegalNameException;
 /**
  * This class is a throwable exception to indicated that the given hero name is
  * not valid.
+ *
+ * @author Ranjith Krishnamurthy
  */
 public class IllegalHeroNameException extends IllegalItemNameException {
     /**

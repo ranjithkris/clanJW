@@ -38,6 +38,8 @@ public class HttpConnection {
      * @throws InvalidItemTagException      If the given tag is invalid.
      */
     public static JSONObject connectAndGetResults(String link, String tag, String JWTOKEN) throws COCServerConnectionException, InvalidItemTagException {
+        //Todo: Before send connection request, sanitize the provided link.
+
         try {
             HttpURLConnection connection = (HttpURLConnection) new URL(link).openConnection();
             connection.setRequestProperty("Accept", "application/json");

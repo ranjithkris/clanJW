@@ -4,6 +4,8 @@ import de.ra.exception.ClanJWException;
 
 /**
  * This class is a throwable exception to indicated that the given tag is invalid.
+ *
+ * @author Ranjith Krishnamurthy
  */
 public class InvalidItemTagException extends ClanJWException {
     /**

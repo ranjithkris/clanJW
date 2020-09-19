@@ -16,6 +16,8 @@ import java.net.URLEncoder;
  * This class requires clan's tag and
  * the JSON Web Token to connect to the Clash of Clan server to retrieve the
  * Clan'S information. To get the JSON Web Token see <a href="https://developer.clashofclans.com/">https://developer.clashofclans.com/</a>
+ *
+ * @author Ranjith Krishnamurthy
  */
 public class Clan {
     private String JWTOKEN;
@@ -29,14 +31,15 @@ public class Clan {
      * To get the JSON Web Token see
      * <a href="https://developer.clashofclans.com/">https://developer.clashofclans.com/</a>
      *
-     * @param JWToken  JSON Web Token.
-     * @param CLAN_TAG Clan's tag.
+     * @param JWToken JSON Web Token.
+     * @param ClanTag Clan's tag.
      * @throws COCServerConnectionException If the connection to Clash of Clan server is failed.
      * @throws InvalidClanTagException      If the given clan tag contains invalid character or not found in Clash of Clans server.
      * @throws UnsupportedEncodingException If the given player tag is failed to encode to avoid taint-style vulnerabilities.
      */
-    public Clan(String JWToken, String CLAN_TAG) throws COCServerConnectionException, UnsupportedEncodingException, InvalidClanTagException {
+    public Clan(String JWToken, String ClanTag) throws COCServerConnectionException, UnsupportedEncodingException, InvalidClanTagException {
         JWTOKEN = JWToken;
+        CLAN_TAG = ClanTag;
         changeClanTag(CLAN_TAG);
     }
 

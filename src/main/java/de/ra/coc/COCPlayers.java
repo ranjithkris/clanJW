@@ -30,6 +30,8 @@ import java.net.URLEncoder;
  * This class requires player's tag and
  * the JSON Web Token to connect to the Clash of Clan server to retrieve the
  * Players information. To get the JSON Web Token see <a href="https://developer.clashofclans.com/">https://developer.clashofclans.com/</a>
+ *
+ * @author Ranjith Krishnamurthy
  */
 public class COCPlayers {
     private String JWTOKEN;

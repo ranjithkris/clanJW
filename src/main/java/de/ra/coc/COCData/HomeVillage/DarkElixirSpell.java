@@ -5,6 +5,8 @@ import java.util.List;
 
 /**
  * This class represents the Dark Elixir spells in home village.
+ *
+ * @author Ranjith Krishnamurthy
  */
 public class DarkElixirSpell {
     /**
@@ -34,6 +36,7 @@ public class DarkElixirSpell {
 
     /**
      * This method returns the list of all dark elixir spells in home village.
+     *
      * @return Complete list of dark elixir spells in home village.
      */
     public static List<String> getDarkElixirSpellsList() {

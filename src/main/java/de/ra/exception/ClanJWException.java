@@ -2,6 +2,8 @@ package de.ra.exception;
 
 /**
  * This class is a top level throwable exception to catch all the clanJW related exception.
+ *
+ * @author Ranjith Krishnamurthy
  */
 public class ClanJWException extends Exception {
     /**

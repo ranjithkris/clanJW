@@ -5,6 +5,8 @@ import java.util.List;
 
 /**
  * This class represents the Elixir spells in home village.
+ *
+ * @author Ranjith Krishnamurthy
  */
 public class ElixirSpell {
     /**
@@ -39,6 +41,7 @@ public class ElixirSpell {
 
     /**
      * This method returns the list of all elixir spells in home village.
+     *
      * @return Complete list of elixir spells in home village.
      */
     public static List<String> getElixirSpellsList() {

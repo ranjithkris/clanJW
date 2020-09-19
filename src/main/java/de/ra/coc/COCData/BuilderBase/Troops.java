@@ -5,6 +5,8 @@ import java.util.List;
 
 /**
  * This class represents the troops in builder base.
+ *
+ * @author Ranjith Krishnamurthy
  */
 public class Troops {
     /**
@@ -64,6 +66,7 @@ public class Troops {
 
     /**
      * This method returns the list of all troops in builder base.
+     *
      * @return Complete list of troops in builder base.
      */
     public static List<String> getBuilderBaseTroopsList() {
