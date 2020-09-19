@@ -1,6 +1,7 @@
 package de.ra.coc.Clan;
 
 import de.ra.exception.ClanJWException;
+import org.json.JSONException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -26,8 +27,16 @@ public class ClanTest {
     }
 
     @Test
-    public void myClan() throws ClanJWException, UnsupportedEncodingException {
-        Clan clan1 = new Clan(JWTOKEN, "#Y989UU9Y");
+    public void myClan() throws ClanJWException, UnsupportedEncodingException, JSONException {
+        Clan myClan = new Clan(JWTOKEN, "#VQU8PYGY");
 
+        System.out.println("Description = " + myClan.getClanDescription());
+        System.out.println("Clan level = " + myClan.getClanLevel());
+        System.out.println("Number of war wins = " + myClan.getNumberOfWarWins());
+        System.out.println("War streaks = " + myClan.getNumberOfWarWinStreak());
+        System.out.println("Required Trophies = " + myClan.getRequiredTrophies());
+        System.out.println("War frequency = " + myClan.getWarFrequency());
+        System.out.println("War league Id = " + myClan.getWarLeagueId());
+        System.out.println("War league name = " + myClan.getWarLeagueName());
     }
 }

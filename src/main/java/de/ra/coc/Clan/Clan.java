@@ -4,6 +4,7 @@ import de.ra.coc.ServerConnection.HttpConnection;
 import de.ra.exception.serverConnectionException.COCServerConnectionException;
 import de.ra.exception.tagException.InvalidClanTagException;
 import de.ra.exception.tagException.InvalidItemTagException;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.owasp.html.PolicyFactory;
 import org.owasp.html.Sanitizers;
@@ -72,5 +73,85 @@ public class Clan {
         } catch (InvalidItemTagException e) {
             throw new InvalidClanTagException(CLAN_TAG);
         }
+    }
+
+    /**
+     * This method returns the clan's war frequency.
+     *
+     * @return Clan's war frequency.
+     * @throws JSONException If the processing of JSONObject is failed.
+     */
+    public String getWarFrequency() throws JSONException {
+        return CLAN_INFORMATION.has("warFrequency") ? (String) CLAN_INFORMATION.get("warFrequency") : "NotApplicable";
+    }
+
+    /**
+     * This method returns the clan's war league name.
+     *
+     * @return Clan's war league name.
+     * @throws JSONException If the processing of JSONObject is failed.
+     */
+    public String getWarLeagueName() throws JSONException {
+        return CLAN_INFORMATION.has("warLeague") ? (String) CLAN_INFORMATION.getJSONObject("warLeague").get("name") : "NotApplicable";
+    }
+
+    /**
+     * This method returns the clan's war league id.
+     *
+     * @return Clan's war league id.
+     * @throws JSONException If the processing of JSONObject is failed.
+     */
+    public Integer getWarLeagueId() throws JSONException {
+        return CLAN_INFORMATION.has("warLeague") ? (Integer) CLAN_INFORMATION.getJSONObject("warLeague").get("id") : -1;
+    }
+
+    /**
+     * This method returns the number clan war wins.
+     *
+     * @return Number clan war wins.
+     * @throws JSONException If the processing of JSONObject is failed.
+     */
+    public Integer getNumberOfWarWins() throws JSONException {
+        return CLAN_INFORMATION.has("warWins") ? (Integer) CLAN_INFORMATION.get("warWins") : -1;
+    }
+
+    /**
+     * This method returns the clan war win streak.
+     *
+     * @return Clan war win streak.
+     * @throws JSONException If the processing of JSONObject is failed.
+     */
+    public Integer getNumberOfWarWinStreak() throws JSONException {
+        return CLAN_INFORMATION.has("warWinStreak") ? (Integer) CLAN_INFORMATION.get("warWinStreak") : -1;
+    }
+
+    /**
+     * This method returns the clan level.
+     *
+     * @return Clan level.
+     * @throws JSONException If the processing of JSONObject is failed.
+     */
+    public Integer getClanLevel() throws JSONException {
+        return CLAN_INFORMATION.has("clanLevel") ? (Integer) CLAN_INFORMATION.get("clanLevel") : -1;
+    }
+
+    /**
+     * This method returns the required trophies.
+     *
+     * @return Required trophies.
+     * @throws JSONException If the processing of JSONObject is failed.
+     */
+    public Integer getRequiredTrophies() throws JSONException {
+        return CLAN_INFORMATION.has("requiredTrophies") ? (Integer) CLAN_INFORMATION.get("requiredTrophies") : -1;
+    }
+
+    /**
+     * This method returns the clan description.
+     *
+     * @return Clan description.
+     * @throws JSONException If the processing of JSONObject is failed.
+     */
+    public String getClanDescription() throws JSONException {
+        return CLAN_INFORMATION.has("description") ? (String) CLAN_INFORMATION.get("description") : "NotApplicable";
     }
 }
