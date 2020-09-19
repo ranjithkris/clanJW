@@ -27,7 +27,7 @@ public class ClanSearchFactory {
     private Integer minClanPointsCriteria = -1;
     private Integer minClanLevelCriteria = -1;
     private Integer resultLimit = 20;
-    private static String JWToken;
+    private String JWTOKEN;
 
     /**
      * Constructs the ClanSearchFactory object with the given Json Web Token to connect to the
@@ -38,7 +38,7 @@ public class ClanSearchFactory {
      * @param JWToken Json Wen Token from clash of clan server.
      */
     public ClanSearchFactory(String JWToken) {
-        ClanSearchFactory.JWToken = JWToken;
+        JWTOKEN = JWToken;
     }
 
     /**
@@ -159,7 +159,7 @@ public class ClanSearchFactory {
      *                                      to encode for the URL.
      */
     public ClanSearch build() throws UnsupportedEncodingException {
-        ClanSearch clanSearch = new ClanSearch(JWToken);
+        ClanSearch clanSearch = new ClanSearch(JWTOKEN);
         clanSearch.clanNameCriteria = clanNameCriteria;
         clanSearch.warFrequencyCriteria = warFrequencyCriteria;
         clanSearch.locationIDCriteria = locationIDCriteria;

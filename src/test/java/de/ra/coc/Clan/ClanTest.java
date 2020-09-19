@@ -27,7 +27,7 @@ public class ClanTest {
 
     @Test
     public void myClan() throws ClanJWException, UnsupportedEncodingException {
-        Clan clan1 = new Clan(JWTOKEN, "#VQU8PYGY");
+        Clan clan1 = new Clan(JWTOKEN, "#Y989UU9Y");
 
     }
 }

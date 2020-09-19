@@ -6,18 +6,23 @@ import de.ra.coc.COCData.HomeVillage.DarkElixirSpell;
 import de.ra.coc.COCData.HomeVillage.DarkElixirTroop;
 import de.ra.coc.COCData.HomeVillage.ElixirSpell;
 import de.ra.coc.COCData.HomeVillage.ElixirTroop;
-import de.ra.exception.*;
+import de.ra.coc.ServerConnection.HttpConnection;
+import de.ra.exception.IllegalNameException.IllegalHeroNameException;
+import de.ra.exception.IllegalNameException.IllegalSpellNameException;
+import de.ra.exception.IllegalNameException.IllegalTroopNameException;
+import de.ra.exception.notUnlockedException.HeroNotUnlockedException;
+import de.ra.exception.notUnlockedException.SpellNotUnlockedException;
+import de.ra.exception.notUnlockedException.TroopNotUnlockedException;
+import de.ra.exception.serverConnectionException.COCServerConnectionException;
+import de.ra.exception.tagException.InvalidItemTagException;
+import de.ra.exception.tagException.InvalidPlayerTagException;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.owasp.html.PolicyFactory;
 import org.owasp.html.Sanitizers;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.net.URLEncoder;
 
 /**
@@ -27,12 +32,9 @@ import java.net.URLEncoder;
  * Players information. To get the JSON Web Token see <a href="https://developer.clashofclans.com/">https://developer.clashofclans.com/</a>
  */
 public class COCPlayers {
-    private static String JWTOKEN;
-    private static String PLAYER_TAG;
-    private static JSONObject PLAYER_INFORMATION;
-
-    private static final String API_LINK = "https://api.clashofclans.com/";
-    private static final String API_VERSION = "v1";
+    private String JWTOKEN;
+    private String PLAYER_TAG;
+    private JSONObject PLAYER_INFORMATION;
 
     /**
      * Initialize newly constructed COCPlayer with the passed JSON Web Token and player's tag and retrieves the players information
@@ -40,14 +42,14 @@ public class COCPlayers {
      * To get the JSON Web Token see
      * <a href="https://developer.clashofclans.com/">https://developer.clashofclans.com/</a>
      *
-     * @param JWTOKEN    JSON Web Token.
+     * @param JWToken    JSON Web Token.
      * @param PLAYER_TAG Player's tag.
      * @throws COCServerConnectionException If the connection to Clash of Clan server is failed.
      * @throws InvalidPlayerTagException    If the given player tag contains invalid character or not found in Clash of Clans server.
      * @throws UnsupportedEncodingException If the given player tag is failed to encode to avoid taint-style vulnerabilities.
      */
-    public COCPlayers(String JWTOKEN, String PLAYER_TAG) throws COCServerConnectionException, InvalidPlayerTagException, UnsupportedEncodingException {
-        COCPlayers.JWTOKEN = JWTOKEN;
+    public COCPlayers(String JWToken, String PLAYER_TAG) throws COCServerConnectionException, InvalidPlayerTagException, UnsupportedEncodingException {
+        JWTOKEN = JWToken;
         changePlayerTag(PLAYER_TAG);
     }
 
@@ -60,7 +62,7 @@ public class COCPlayers {
      * @throws InvalidPlayerTagException    If the given player tag contains invalid character or not found in Clash of Clans server.
      * @throws UnsupportedEncodingException If the given player tag is failed to encode to avoid taint-style vulnerabilities.
      */
-    public void changePlayerTag(String PLAYER_TAG) throws COCServerConnectionException, InvalidPlayerTagException, UnsupportedEncodingException {
+    public void changePlayerTag(String PLAYER_TAG) throws COCServerConnectionException, UnsupportedEncodingException, InvalidPlayerTagException {
         PolicyFactory myPF = Sanitizers.BLOCKS
                 .and(Sanitizers.FORMATTING)
                 .and(Sanitizers.IMAGES)
@@ -69,42 +71,16 @@ public class COCPlayers {
                 .and(Sanitizers.TABLES);
 
         PLAYER_TAG = myPF.sanitize(PLAYER_TAG);
-        COCPlayers.PLAYER_TAG = URLEncoder.encode(PLAYER_TAG, "UTF-8");
+        PLAYER_TAG = URLEncoder.encode(PLAYER_TAG, "UTF-8");
 
         try {
-            HttpURLConnection connection = (HttpURLConnection) new URL(API_LINK + API_VERSION + "/players/" + COCPlayers.PLAYER_TAG).openConnection();
-            connection.setRequestProperty("Accept", "application/json");
-            connection.setRequestProperty("authorization", "Bearer " + JWTOKEN);
-
-            InputStream input;
-            int statusCode = connection.getResponseCode();
-
-            if (statusCode >= 200 && statusCode < 400) {
-                input = connection.getInputStream();
-            } else if (statusCode == 404) {
-                throw new InvalidPlayerTagException(PLAYER_TAG);
-
-            } else {
-                input = connection.getErrorStream();
-                JSONObject response = InputToJson.getJSONObject(input);
-                System.out.println(response);
-                String reason = "";
-                String message = "";
-                if (response.has("reason"))
-                    reason = (String) response.get("reason");
-
-                if (response.has("message"))
-                    message = (String) response.get("message");
-
-                throw new COCServerConnectionException(statusCode,
-                        reason,
-                        message);
-            }
-
-            PLAYER_INFORMATION = InputToJson.getJSONObject(input);
-            System.out.println(PLAYER_INFORMATION);
-        } catch (IOException | JSONException e) {
-            e.printStackTrace();
+            PLAYER_INFORMATION = HttpConnection.connectAndGetResults(
+                    HttpConnection.API_LINK + HttpConnection.API_VERSION + "/players/" + PLAYER_TAG,
+                    PLAYER_TAG,
+                    JWTOKEN
+            );
+        } catch (InvalidItemTagException e) {
+            throw new InvalidPlayerTagException(PLAYER_TAG);
         }
     }
 

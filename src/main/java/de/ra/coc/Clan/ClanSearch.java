@@ -1,8 +1,10 @@
 package de.ra.coc.Clan;
 
 import de.ra.coc.InputToJson;
-import de.ra.exception.COCServerConnectionException;
-import de.ra.exception.InvalidJsonObject;
+import de.ra.coc.ServerConnection.HttpConnection;
+import de.ra.exception.serverConnectionException.COCServerConnectionException;
+import de.ra.exception.jsonException.InvalidJsonObject;
+import de.ra.exception.tagException.InvalidItemTagException;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,10 +32,8 @@ public class ClanSearch {
     protected Integer resultLimit = 20;
 
     private JSONObject searchResult = null;
-    private static String JWTOKEN;
-    private static final String API_LINK = "https://api.clashofclans.com/";
-    private static final String API_VERSION = "v1";
-    private static String completeLink = API_LINK + API_VERSION + "/clans?";
+    private String JWTOKEN;
+    private String completeLink = HttpConnection.API_LINK + HttpConnection.API_VERSION + "/clans?";
 
     /**
      * Constructs the ClanSearch with the Json Web Token.
@@ -43,11 +43,11 @@ public class ClanSearch {
      * @param JWToken Json Web Token
      */
     public ClanSearch(String JWToken) {
-        ClanSearch.JWTOKEN = JWToken;
+        JWTOKEN = JWToken;
     }
 
     protected ClanSearch buildClanSearch() throws UnsupportedEncodingException {
-        completeLink = API_LINK + API_VERSION + "/clans?";
+        completeLink = HttpConnection.API_LINK + HttpConnection.API_VERSION + "/clans?";
 
         String param = "";
         if (clanNameCriteria != null && !clanNameCriteria.isEmpty())
@@ -102,35 +102,12 @@ public class ClanSearch {
     public void search() throws COCServerConnectionException {
 
         try {
-            HttpURLConnection connection = (HttpURLConnection) new URL(completeLink).openConnection();
-            connection.setRequestProperty("Accept", "application/json");
-            connection.setRequestProperty("authorization", "Bearer " + JWTOKEN);
-
-            InputStream input;
-            int statusCode = connection.getResponseCode();
-
-            if (statusCode >= 200 && statusCode < 400) {
-                input = connection.getInputStream();
-            } else {
-                input = connection.getErrorStream();
-                JSONObject response = InputToJson.getJSONObject(input);
-
-                String reason = "";
-                String message = "";
-                if (response.has("reason"))
-                    reason = (String) response.get("reason");
-
-                if (response.has("message"))
-                    message = (String) response.get("message");
-
-                throw new COCServerConnectionException(statusCode,
-                        reason,
-                        message);
-            }
-
-            searchResult = InputToJson.getJSONObject(input);
-
-        } catch (IOException | JSONException e) {
+            searchResult = HttpConnection.connectAndGetResults(
+                    completeLink,
+                    null,
+                    JWTOKEN
+            );
+        } catch (InvalidItemTagException e) {
             e.printStackTrace();
         }
     }
