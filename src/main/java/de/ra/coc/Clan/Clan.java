@@ -154,4 +154,14 @@ public class Clan {
     public String getClanDescription() throws JSONException {
         return CLAN_INFORMATION.has("description") ? (String) CLAN_INFORMATION.get("description") : "NotApplicable";
     }
+
+    /**
+     * This method returns the number of members in clan.
+     *
+     * @return Number of members in clan.
+     * @throws JSONException If the processing of JSONObject is failed.
+     */
+    public Integer getNumberOfMembers() throws JSONException {
+        return CLAN_INFORMATION.has("members") ? (Integer) CLAN_INFORMATION.get("members") : -1;
+    }
 }

@@ -38,5 +38,6 @@ public class ClanTest {
         System.out.println("War frequency = " + myClan.getWarFrequency());
         System.out.println("War league Id = " + myClan.getWarLeagueId());
         System.out.println("War league name = " + myClan.getWarLeagueName());
+        System.out.println("War league name = " + myClan.getNumberOfMembers());
     }
 }
