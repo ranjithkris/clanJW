@@ -164,4 +164,14 @@ public class Clan {
     public Integer getNumberOfMembers() throws JSONException {
         return CLAN_INFORMATION.has("members") ? (Integer) CLAN_INFORMATION.get("members") : -1;
     }
+
+    /**
+     * This method returns the clan type.
+     *
+     * @return Clan type.
+     * @throws JSONException If the processing of JSONObject is failed.
+     */
+    public String getClanType() throws JSONException {
+        return CLAN_INFORMATION.has("type") ? (String) CLAN_INFORMATION.get("type") : "NotApplicable";
+    }
 }
