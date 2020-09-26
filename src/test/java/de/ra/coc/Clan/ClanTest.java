@@ -41,5 +41,6 @@ public class ClanTest {
         System.out.println("War league name = " + myClan.getNumberOfMembers());
         System.out.println("Clan Type = " + myClan.getClanType());
         System.out.println("Clan Points = " + myClan.getClanPoints());
+        System.out.println("Clan Name = " + myClan.getClanName());
     }
 }
