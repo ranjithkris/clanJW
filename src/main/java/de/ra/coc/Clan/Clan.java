@@ -214,4 +214,14 @@ public class Clan {
     public String getClanTag() throws JSONException {
         return CLAN_INFORMATION.has("tag") ? (String) CLAN_INFORMATION.get("tag") : "NotApplicable";
     }
+
+    /**
+     * This method returns isWarLogPublic.
+     *
+     * @return isWarLogPublic.
+     * @throws JSONException If the processing of JSONObject is failed.
+     */
+    public boolean isWarLogPublic() throws JSONException {
+        return CLAN_INFORMATION.has("isWarLogPublic") && (boolean) CLAN_INFORMATION.get("isWarLogPublic");
+    }
 }
