@@ -204,4 +204,14 @@ public class Clan {
     public Integer getClanVersusPoints() throws JSONException {
         return CLAN_INFORMATION.has("clanVersusPoints") ? (Integer) CLAN_INFORMATION.get("clanVersusPoints") : -1;
     }
+
+    /**
+     * This method returns the clan tag.
+     *
+     * @return Clan tag.
+     * @throws JSONException If the processing of JSONObject is failed.
+     */
+    public String getClanTag() throws JSONException {
+        return CLAN_INFORMATION.has("tag") ? (String) CLAN_INFORMATION.get("tag") : "NotApplicable";
+    }
 }

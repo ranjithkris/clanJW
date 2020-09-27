@@ -43,5 +43,6 @@ public class ClanTest {
         System.out.println("Clan Points = " + myClan.getClanPoints());
         System.out.println("Clan Name = " + myClan.getClanName());
         System.out.println("Clan Versus Points = " + myClan.getClanVersusPoints());
+        System.out.println("Clan Tag = " + myClan.getClanTag());
     }
 }
