@@ -256,4 +256,16 @@ public class Clan {
                 (String) CLAN_INFORMATION.getJSONObject("badgeUrls").get("small") :
                 "NotApplicable";
     }
+
+    /**
+     * This method returns the large clan badge url.
+     *
+     * @return Large clan badge url.
+     * @throws JSONException If the processing of JSONObject is failed.
+     */
+    public String getLargeClanBadgeUrl() throws JSONException {
+        return CLAN_INFORMATION.has("badgeUrls") ?
+                (String) CLAN_INFORMATION.getJSONObject("badgeUrls").get("large") :
+                "NotApplicable";
+    }
 }

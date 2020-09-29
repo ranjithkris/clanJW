@@ -48,5 +48,6 @@ public class ClanTest {
         System.out.println("Clan War Ties = " + myClan.getNumberOfClanWarTies());
         System.out.println("Clan War Losses = " + myClan.getNumberOfClanWarLosses());
         System.out.println("Small Clan Badge Url = " + myClan.getSmallClanBadgeUrl());
+        System.out.println("Large Clan Badge Url = " + myClan.getLargeClanBadgeUrl());
     }
 }
