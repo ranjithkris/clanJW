@@ -234,4 +234,14 @@ public class Clan {
     public Integer getNumberOfClanWarTies() throws JSONException {
         return CLAN_INFORMATION.has("warTies") ? (Integer) CLAN_INFORMATION.get("warTies") : -1;
     }
+
+    /**
+     * This method returns the number of clan war losses.
+     *
+     * @return Number of clan war losses.
+     * @throws JSONException If the processing of JSONObject is failed.
+     */
+    public Integer getNumberOfClanWarLosses() throws JSONException {
+        return CLAN_INFORMATION.has("warLosses") ? (Integer) CLAN_INFORMATION.get("warLosses") : -1;
+    }
 }
