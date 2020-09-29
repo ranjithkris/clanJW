@@ -47,5 +47,6 @@ public class ClanTest {
         System.out.println("Is War Log Public = " + myClan.isWarLogPublic());
         System.out.println("Clan War Ties = " + myClan.getNumberOfClanWarTies());
         System.out.println("Clan War Losses = " + myClan.getNumberOfClanWarLosses());
+        System.out.println("Small Clan Badge Url = " + myClan.getSmallClanBadgeUrl());
     }
 }

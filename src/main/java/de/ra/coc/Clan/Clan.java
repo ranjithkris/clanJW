@@ -244,4 +244,16 @@ public class Clan {
     public Integer getNumberOfClanWarLosses() throws JSONException {
         return CLAN_INFORMATION.has("warLosses") ? (Integer) CLAN_INFORMATION.get("warLosses") : -1;
     }
+
+    /**
+     * This method returns the small clan badge url.
+     *
+     * @return Small clan badge url.
+     * @throws JSONException If the processing of JSONObject is failed.
+     */
+    public String getSmallClanBadgeUrl() throws JSONException {
+        return CLAN_INFORMATION.has("badgeUrls") ?
+                (String) CLAN_INFORMATION.getJSONObject("badgeUrls").get("small") :
+                "NotApplicable";
+    }
 }
