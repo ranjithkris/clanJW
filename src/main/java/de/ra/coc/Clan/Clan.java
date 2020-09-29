@@ -224,4 +224,14 @@ public class Clan {
     public boolean isWarLogPublic() throws JSONException {
         return CLAN_INFORMATION.has("isWarLogPublic") && (boolean) CLAN_INFORMATION.get("isWarLogPublic");
     }
+
+    /**
+     * This method returns the number of clan war ties.
+     *
+     * @return Number of clan war ties.
+     * @throws JSONException If the processing of JSONObject is failed.
+     */
+    public Integer getNumberOfClanWarTies() throws JSONException {
+        return CLAN_INFORMATION.has("warTies") ? (Integer) CLAN_INFORMATION.get("warTies") : -1;
+    }
 }
