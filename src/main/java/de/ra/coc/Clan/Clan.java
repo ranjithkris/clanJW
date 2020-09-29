@@ -268,4 +268,16 @@ public class Clan {
                 (String) CLAN_INFORMATION.getJSONObject("badgeUrls").get("large") :
                 "NotApplicable";
     }
+
+    /**
+     * This method returns the medium clan badge url.
+     *
+     * @return Medium clan badge url.
+     * @throws JSONException If the processing of JSONObject is failed.
+     */
+    public String getMediumClanBadgeUrl() throws JSONException {
+        return CLAN_INFORMATION.has("badgeUrls") ?
+                (String) CLAN_INFORMATION.getJSONObject("badgeUrls").get("medium") :
+                "NotApplicable";
+    }
 }
